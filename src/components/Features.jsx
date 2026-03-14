@@ -98,10 +98,10 @@ export default function Features() {
     <section id="features" className="mx-auto mt-14 max-w-7xl px-4 sm:px-6 lg:px-8">
       <div className="mb-10 max-w-3xl">
         <p className="section-label mb-5">Platform Surface</p>
-        <h2 className="font-display text-3xl text-white sm:text-4xl lg:text-[3.2rem]">
+        <h2 className="font-display text-3xl text-[#25483c] sm:text-4xl lg:text-[3.2rem]">
           Precision tooling for every supply chain conversation.
         </h2>
-        <p className="mt-4 max-w-2xl text-base leading-7 text-white/66">
+        <p className="mt-4 max-w-2xl text-base leading-7 text-[#54675f]">
           The experience stays premium because the system stays legible. Each module is built to
           feel tactile, luminous, and instantly readable under pressure.
         </p>
@@ -120,12 +120,12 @@ export default function Features() {
               y: { duration: 0.8, delay: index * 0.08, ease: [0.22, 1, 0.36, 1] },
               scale: { duration: 0.3 },
             }}
-            className="group relative min-h-[320px] overflow-hidden rounded-[28px] border border-white/10 bg-white/[0.04] p-6 backdrop-blur-2xl"
+            className="group relative min-h-[320px] overflow-hidden rounded-[28px] border border-[#255849]/12 bg-white/72 p-6 backdrop-blur-2xl"
           >
             <div
               className={`absolute inset-0 bg-gradient-to-br ${feature.accent} opacity-0 transition duration-500 group-hover:opacity-100`}
             />
-            <div className="absolute inset-x-5 top-0 h-px bg-gradient-to-r from-transparent via-white/45 to-transparent" />
+            <div className="absolute inset-x-5 top-0 h-px bg-gradient-to-r from-transparent via-[#255849]/30 to-transparent" />
             <motion.div
               animate={{ rotate: [0, 3, 0], y: [0, -6, 0] }}
               transition={{ duration: 7 + index, repeat: Infinity, ease: "easeInOut" }}
@@ -135,8 +135,8 @@ export default function Features() {
             </motion.div>
 
             <div className="relative z-10 mt-10">
-              <h3 className="font-display text-2xl text-white">{feature.title}</h3>
-              <p className="mt-4 text-sm leading-7 text-white/66">{feature.copy}</p>
+              <h3 className="font-display text-2xl text-[#25483c]">{feature.title}</h3>
+              <p className="mt-4 text-sm leading-7 text-[#5b6d65]">{feature.copy}</p>
             </div>
 
             <motion.div

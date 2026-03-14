@@ -577,7 +577,7 @@ export default function SupplyChainAnimation() {
         <div className="lg:min-h-screen">
           <div
             ref={sectionShellRef}
-            className="section-shell rounded-[34px] border border-white/10 bg-[linear-gradient(180deg,rgba(4,18,14,0.96),rgba(7,24,19,0.92))] lg:h-screen"
+            className="section-shell rounded-[34px] border border-[#255849]/12 bg-[linear-gradient(180deg,rgba(255,255,255,0.82),rgba(247,241,232,0.84))] lg:h-screen"
           >
             <div className="grid h-full grid-cols-1 lg:grid-cols-[1.18fr_0.82fr]">
               <div className="relative h-[360px] sm:h-[460px] lg:h-full">
@@ -597,10 +597,10 @@ export default function SupplyChainAnimation() {
               <div className="relative z-10 px-6 py-8 sm:px-10 sm:py-10 lg:flex lg:h-full lg:flex-col lg:justify-center lg:px-12 lg:py-12">
                 <div className="max-w-xl">
                   <p className="section-label mb-5">Scroll Storytelling</p>
-                  <h2 className="font-display text-3xl leading-tight text-white sm:text-4xl">
+                  <h2 className="font-display text-3xl leading-tight text-[#25483c] sm:text-4xl">
                     The product journey turns into a camera-led narrative.
                   </h2>
-                  <p className="mt-4 text-base leading-7 text-white/66">
+                  <p className="mt-4 text-base leading-7 text-[#556860]">
                     Scroll through the operating path and the scene advances from supplier pulse to
                     replenishment logic to the final customer promise.
                   </p>
@@ -618,8 +618,8 @@ export default function SupplyChainAnimation() {
                         transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
                         className={`rounded-full border px-4 py-2 text-sm transition-colors duration-300 ${
                           activeStage === index
-                            ? "border-[#7fe5be]/35 bg-white/[0.08] text-white shadow-[0_0_24px_rgba(127,229,190,0.1)]"
-                            : "border-white/10 bg-white/[0.03] text-white/62"
+                            ? "border-[#255849]/18 bg-white/92 text-[#25483c] shadow-[0_0_24px_rgba(37,88,73,0.08)]"
+                            : "border-[#255849]/10 bg-white/60 text-[#5c6f66]"
                         }`}
                       >
                         <span className="font-medium">0{index + 1}</span>
@@ -628,7 +628,7 @@ export default function SupplyChainAnimation() {
                     ))}
                   </div>
 
-                  <div className="relative min-h-[250px] overflow-hidden rounded-[28px] border border-white/10 bg-white/[0.045] px-7 py-7 shadow-[inset_0_1px_0_rgba(255,255,255,0.04)]">
+                  <div className="relative min-h-[250px] overflow-hidden rounded-[28px] border border-[#255849]/12 bg-white/76 px-7 py-7 shadow-[inset_0_1px_0_rgba(255,255,255,0.7)]">
                     <AnimatePresence mode="wait">
                       <motion.div
                         key={storyPanels[activeStage].title}
@@ -638,18 +638,18 @@ export default function SupplyChainAnimation() {
                         transition={{ duration: 0.42, ease: [0.22, 1, 0.36, 1] }}
                         className="absolute inset-0 px-7 py-7"
                       >
-                        <div className="mb-4 flex items-center gap-3 text-sm text-white/64">
-                          <span className="inline-flex h-8 w-8 items-center justify-center rounded-full border border-white/10 bg-white/[0.04] font-semibold text-white">
+                        <div className="mb-4 flex items-center gap-3 text-sm text-[#667a71]">
+                          <span className="inline-flex h-8 w-8 items-center justify-center rounded-full border border-[#255849]/12 bg-[#255849] font-semibold text-white">
                             0{activeStage + 1}
                           </span>
                           <span className="section-label !mb-0 !gap-2 !text-[0.62rem] before:w-7">
                             Live stage
                           </span>
                         </div>
-                        <h3 className="font-display text-2xl text-white">
+                        <h3 className="font-display text-2xl text-[#25483c]">
                           {storyPanels[activeStage].title}
                         </h3>
-                        <p className="mt-4 max-w-md text-base leading-7 text-white/68">
+                        <p className="mt-4 max-w-md text-base leading-7 text-[#556860]">
                           {storyPanels[activeStage].copy}
                         </p>
                       </motion.div>
@@ -667,16 +667,16 @@ export default function SupplyChainAnimation() {
                       transition={{ duration: 0.65, delay: index * 0.08 }}
                       className="story-card rounded-[26px] px-6 py-6"
                     >
-                      <div className="mb-3 flex items-center gap-3 text-sm text-white/64">
-                        <span className="inline-flex h-8 w-8 items-center justify-center rounded-full border border-white/10 bg-white/[0.04] font-semibold text-white">
+                      <div className="mb-3 flex items-center gap-3 text-sm text-[#667a71]">
+                        <span className="inline-flex h-8 w-8 items-center justify-center rounded-full border border-[#255849]/12 bg-[#255849] font-semibold text-white">
                           0{index + 1}
                         </span>
                         <span className="section-label !mb-0 !gap-2 !text-[0.62rem] before:w-7">
                           Live stage
                         </span>
                       </div>
-                      <h3 className="font-display text-xl text-white">{panel.title}</h3>
-                      <p className="mt-3 text-sm leading-6 text-white/68">{panel.copy}</p>
+                      <h3 className="font-display text-xl text-[#25483c]">{panel.title}</h3>
+                      <p className="mt-3 text-sm leading-6 text-[#556860]">{panel.copy}</p>
                     </motion.div>
                   ))}
                 </div>
@@ -687,14 +687,14 @@ export default function SupplyChainAnimation() {
       </section>
 
       <section className="relative z-10 mx-auto mt-20 max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="section-shell rounded-[34px] border border-white/10 bg-white/[0.03] px-6 py-8 sm:px-8 lg:px-10 lg:py-10">
+        <div className="section-shell rounded-[34px] border border-[#255849]/12 bg-white/72 px-6 py-8 sm:px-8 lg:px-10 lg:py-10">
           <div className="grid gap-8 lg:grid-cols-[0.8fr_1.2fr] lg:items-center">
             <div className="max-w-xl">
               <p className="section-label mb-5">Interactive Network</p>
-              <h2 className="font-display text-3xl text-white sm:text-4xl">
+              <h2 className="font-display text-3xl text-[#25483c] sm:text-4xl">
                 A floating graph of industries, retailers, and customers.
               </h2>
-              <p className="mt-4 text-base leading-7 text-white/68">
+              <p className="mt-4 text-base leading-7 text-[#556860]">
                 Hover the network to illuminate the exact relationship path. Data particles move
                 through the graph to suggest lead times, order signal, and route continuity.
               </p>
@@ -707,14 +707,14 @@ export default function SupplyChainAnimation() {
                   ["14 ms", "signal propagation"],
                 ].map(([value, label]) => (
                   <div key={label} className="glass-panel rounded-[22px] px-4 py-4">
-                    <div className="font-display text-2xl text-white">{value}</div>
-                    <div className="mt-1 text-sm text-white/62">{label}</div>
+                    <div className="font-display text-2xl text-[#25483c]">{value}</div>
+                    <div className="mt-1 text-sm text-[#5b6d65]">{label}</div>
                   </div>
                 ))}
               </div>
             </div>
 
-            <div className="relative h-[460px] sm:h-[560px] overflow-hidden rounded-[28px] border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.06),rgba(255,255,255,0.02))]">
+            <div className="relative h-[460px] sm:h-[560px] overflow-hidden rounded-[28px] border border-[#255849]/12 bg-[linear-gradient(180deg,rgba(255,255,255,0.62),rgba(239,234,225,0.42))]">
               <SceneCanvas
                 fallback={<NetworkSceneFallback />}
                 className="!h-full !w-full"
@@ -726,7 +726,7 @@ export default function SupplyChainAnimation() {
                 <NetworkScene activeNode={activeNode} setActiveNode={setActiveNode} />
               </SceneCanvas>
 
-              <div className="pointer-events-none absolute left-5 top-5 rounded-full border border-white/10 bg-black/25 px-4 py-2 text-xs font-semibold uppercase tracking-[0.24em] text-white/70 backdrop-blur-xl">
+              <div className="pointer-events-none absolute left-5 top-5 rounded-full border border-[#255849]/12 bg-white/74 px-4 py-2 text-xs font-semibold uppercase tracking-[0.24em] text-[#255849] backdrop-blur-xl">
                 Hover a node to isolate the path
               </div>
             </div>

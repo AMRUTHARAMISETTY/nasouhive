@@ -446,8 +446,8 @@ export default function Hero3DScene() {
   return (
     <section id="top" className="relative pt-8 sm:pt-10">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="section-shell hero-mesh min-h-[88vh] rounded-[34px] border border-white/10 bg-white/[0.03]">
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_12%_14%,rgba(229,216,199,0.2),transparent_24%),radial-gradient(circle_at_88%_12%,rgba(31,92,74,0.38),transparent_22%),linear-gradient(180deg,rgba(255,255,255,0.06),rgba(255,255,255,0))]" />
+        <div className="section-shell hero-mesh min-h-[88vh] rounded-[34px] border border-[#255849]/12 bg-white/68">
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_12%_14%,rgba(229,216,199,0.44),transparent_24%),radial-gradient(circle_at_88%_12%,rgba(31,92,74,0.16),transparent_22%),linear-gradient(180deg,rgba(255,255,255,0.34),rgba(255,255,255,0))]" />
 
           <div className="relative z-10 grid min-h-[88vh] grid-cols-1 gap-10 px-6 pb-8 pt-10 sm:px-8 lg:grid-cols-[1.08fr_0.92fr] lg:px-12 lg:pb-12 lg:pt-14">
             <div className="flex flex-col justify-between">
@@ -456,12 +456,12 @@ export default function Hero3DScene() {
                   Cinematic Supply Intelligence
                 </p>
 
-                <h1 className="font-display text-[2.8rem] leading-[0.95] tracking-[-0.04em] text-white sm:text-[4rem] lg:text-[5.4rem]">
+                <h1 className="font-display text-[2.8rem] leading-[0.95] tracking-[-0.04em] text-[#25483c] sm:text-[4rem] lg:text-[5.4rem]">
                   Move every shipment through a{" "}
                   <span className="text-gradient">living supply chain</span>.
                 </h1>
 
-                <p className="mt-6 max-w-xl text-base leading-7 text-white/72 sm:text-lg">
+                <p className="mt-6 max-w-xl text-base leading-7 text-[#4c6058] sm:text-lg">
                   Nasou Hive connects industry, retailers, and customers inside one luminous
                   operating layer so inventory, route health, and order promise stay visible in
                   motion.
@@ -472,7 +472,7 @@ export default function Hero3DScene() {
                     whileHover={{ scale: 1.02, y: -2 }}
                     whileTap={{ scale: 0.98 }}
                     href="#cta"
-                    className="inline-flex items-center justify-center rounded-full bg-[#e5d8c7] px-6 py-3.5 text-sm font-semibold text-[#10221c] shadow-[0_12px_40px_rgba(229,216,199,0.26)] transition"
+                    className="button-primary inline-flex items-center justify-center rounded-full px-6 py-3.5 text-sm font-semibold transition"
                   >
                     Book the live walkthrough
                   </motion.a>
@@ -480,7 +480,7 @@ export default function Hero3DScene() {
                     whileHover={{ scale: 1.02, y: -2 }}
                     whileTap={{ scale: 0.98 }}
                     href="#story"
-                    className="glass-panel inline-flex items-center justify-center rounded-full px-6 py-3.5 text-sm font-semibold text-white"
+                    className="glass-panel inline-flex items-center justify-center rounded-full px-6 py-3.5 text-sm font-semibold text-[#25483c]"
                   >
                     Explore the motion system
                   </motion.a>
@@ -497,8 +497,8 @@ export default function Hero3DScene() {
                     key={label}
                     className="glass-panel rounded-[24px] px-5 py-5 text-left backdrop-blur-2xl"
                   >
-                    <div className="font-display text-2xl text-white">{value}</div>
-                    <div className="mt-2 text-sm leading-6 text-white/62">{label}</div>
+                    <div className="font-display text-2xl text-[#25483c]">{value}</div>
+                    <div className="mt-2 text-sm leading-6 text-[#5b6d65]">{label}</div>
                   </div>
                 ))}
               </div>
@@ -506,7 +506,7 @@ export default function Hero3DScene() {
 
             <div className="relative h-[460px] sm:h-[680px] lg:h-[820px] xl:h-[900px]">
               <div className="absolute inset-0 sm:bottom-[116px] lg:bottom-[124px]">
-                <div className="absolute inset-0 rounded-[28px] border border-white/8 bg-[linear-gradient(180deg,rgba(255,255,255,0.05),rgba(255,255,255,0.02))] backdrop-blur-sm" />
+                <div className="absolute inset-0 rounded-[28px] border border-[#255849]/12 bg-[linear-gradient(180deg,rgba(255,255,255,0.56),rgba(239,234,225,0.34))] backdrop-blur-sm" />
                 <SceneCanvas
                   fallback={<HeroSceneFallback />}
                   className="!h-full !w-full"
@@ -534,10 +534,10 @@ export default function Hero3DScene() {
                     className="glass-panel rounded-[22px] px-4 py-3.5 text-left"
                   >
                     <div className="mb-1.5 flex items-center gap-2">
-                      <span className="inline-flex h-2.5 w-2.5 rounded-full bg-[#8ff2c8]" />
-                      <span className="text-sm font-semibold text-white">{label}</span>
+                      <span className="inline-flex h-2.5 w-2.5 rounded-full bg-[#255849]" />
+                      <span className="text-sm font-semibold text-[#25483c]">{label}</span>
                     </div>
-                    <p className="text-xs leading-5 text-white/62">{copy}</p>
+                    <p className="text-xs leading-5 text-[#5b6d65]">{copy}</p>
                   </motion.div>
                 ))}
               </div>

@@ -42,11 +42,11 @@ function CountMetric({ value, label, suffix = "", decimals = 0 }) {
   }, [value]);
 
   return (
-    <div ref={ref} className="rounded-[22px] border border-white/10 bg-white/[0.05] px-4 py-4">
-      <div className="font-display text-2xl text-white">
+    <div ref={ref} className="rounded-[22px] border border-[#255849]/12 bg-white/72 px-4 py-4">
+      <div className="font-display text-2xl text-[#25483c]">
         {formatMetric(display, suffix, decimals)}
       </div>
-      <div className="mt-1 text-sm text-white/62">{label}</div>
+      <div className="mt-1 text-sm text-[#5b6d65]">{label}</div>
     </div>
   );
 }
@@ -95,39 +95,39 @@ function DashboardCard() {
         transition={{ duration: 7.5, repeat: Infinity, ease: "easeInOut" }}
         className="relative mx-auto w-full max-w-[680px]"
       >
-        <div className="absolute inset-6 rounded-[30px] bg-[#7fe5be]/10 blur-3xl" />
+        <div className="absolute inset-6 rounded-[30px] bg-[#255849]/10 blur-3xl" />
         <motion.div
           animate={{ rotateZ: [0, -1.5, 0], y: [0, 8, 0] }}
           transition={{ duration: 8.4, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute right-6 top-8 z-0 h-40 w-40 rounded-[30px] border border-white/10 bg-white/[0.05] backdrop-blur-2xl"
+          className="absolute right-6 top-8 z-0 h-40 w-40 rounded-[30px] border border-[#255849]/10 bg-white/50 backdrop-blur-2xl"
           style={{ transform: "translateZ(-80px)" }}
         />
         <motion.div
           animate={{ rotateZ: [0, 2.5, 0], x: [0, -8, 0] }}
           transition={{ duration: 7.2, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute bottom-8 left-4 z-0 h-28 w-52 rounded-[28px] border border-white/10 bg-[#255849]/25 backdrop-blur-2xl"
+          className="absolute bottom-8 left-4 z-0 h-28 w-52 rounded-[28px] border border-[#255849]/10 bg-[#255849]/14 backdrop-blur-2xl"
           style={{ transform: "translateZ(-60px)" }}
         />
 
-        <div className="dashboard-grid relative z-10 overflow-hidden rounded-[34px] border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.12),rgba(255,255,255,0.04))] p-5 backdrop-blur-3xl sm:p-6">
+        <div className="dashboard-grid relative z-10 overflow-hidden rounded-[34px] border border-[#255849]/12 bg-[linear-gradient(180deg,rgba(255,255,255,0.86),rgba(247,241,232,0.82))] p-5 backdrop-blur-3xl sm:p-6">
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-sm uppercase tracking-[0.28em] text-white/58">Unified ops cockpit</p>
-              <h3 className="mt-2 font-display text-2xl text-white sm:text-3xl">Supply chain command</h3>
+              <p className="text-sm uppercase tracking-[0.28em] text-[#5d7269]">Unified ops cockpit</p>
+              <h3 className="mt-2 font-display text-2xl text-[#25483c] sm:text-3xl">Supply chain command</h3>
             </div>
-            <div className="rounded-full border border-white/10 bg-white/[0.04] px-3 py-1.5 text-xs font-semibold uppercase tracking-[0.24em] text-[#9ff0cc]">
+            <div className="rounded-full border border-[#255849]/14 bg-[linear-gradient(180deg,#4f816e_0%,#2d6150_100%)] px-3 py-1.5 text-xs font-semibold uppercase tracking-[0.24em] text-[#fffdf9] shadow-[inset_0_1px_0_rgba(255,255,255,0.18)]">
               Live
             </div>
           </div>
 
           <div className="mt-6 grid gap-4 lg:grid-cols-[1.1fr_0.9fr]">
-            <div className="rounded-[26px] border border-white/10 bg-black/18 p-4">
+            <div className="rounded-[26px] border border-[#255849]/10 bg-[#fffaf4]/88 p-4">
               <div className="mb-4 flex items-center justify-between">
                 <div>
-                  <p className="text-xs uppercase tracking-[0.24em] text-white/50">Network flow</p>
-                  <p className="mt-2 text-lg font-semibold text-white">Delivered volume vs forecast</p>
+                  <p className="text-xs uppercase tracking-[0.24em] text-[#687c73]">Network flow</p>
+                  <p className="mt-2 text-lg font-semibold text-[#25483c]">Delivered volume vs forecast</p>
                 </div>
-                <div className="rounded-full border border-white/10 bg-white/[0.05] px-3 py-1 text-sm text-white/70">
+                <div className="rounded-full border border-[#255849]/10 bg-white/80 px-3 py-1 text-sm text-[#255849]">
                   +18.4%
                 </div>
               </div>
@@ -147,7 +147,7 @@ function DashboardCard() {
                     x2="360"
                     y1={y}
                     y2={y}
-                    stroke="rgba(255,255,255,0.08)"
+                    stroke="rgba(37,88,73,0.12)"
                     strokeDasharray="5 8"
                   />
                 ))}
@@ -164,7 +164,7 @@ function DashboardCard() {
                 <motion.path
                   d="M0 188C44 168 82 162 118 146C158 128 188 120 226 132C282 148 312 118 360 122"
                   fill="none"
-                  stroke="rgba(230,236,234,0.55)"
+                  stroke="rgba(93,114,105,0.5)"
                   strokeWidth="3"
                   strokeLinecap="round"
                   strokeDasharray="10 10"
@@ -188,8 +188,8 @@ function DashboardCard() {
             </div>
 
             <div className="flex flex-col gap-4">
-              <div className="rounded-[26px] border border-white/10 bg-black/18 p-4">
-                <p className="text-xs uppercase tracking-[0.24em] text-white/50">Regional fill</p>
+              <div className="rounded-[26px] border border-[#255849]/10 bg-[#fffaf4]/88 p-4">
+                <p className="text-xs uppercase tracking-[0.24em] text-[#687c73]">Regional fill</p>
                 <div className="mt-4 space-y-4">
                   {[
                     ["North", 86],
@@ -198,11 +198,11 @@ function DashboardCard() {
                     ["South", 78],
                   ].map(([label, value], index) => (
                     <div key={label}>
-                      <div className="mb-2 flex items-center justify-between text-sm text-white/72">
+                      <div className="mb-2 flex items-center justify-between text-sm text-[#51635b]">
                         <span>{label}</span>
                         <span>{value}%</span>
                       </div>
-                      <div className="h-2.5 overflow-hidden rounded-full bg-white/8">
+                      <div className="h-2.5 overflow-hidden rounded-full bg-[#255849]/10">
                         <motion.div
                           initial={{ width: 0 }}
                           animate={isInView ? { width: `${value}%` } : {}}
@@ -219,13 +219,13 @@ function DashboardCard() {
                 </div>
               </div>
 
-              <div className="rounded-[26px] border border-white/10 bg-black/18 p-4">
+              <div className="rounded-[26px] border border-[#255849]/10 bg-[#fffaf4]/88 p-4">
                 <div className="mb-4 flex items-center justify-between">
                   <div>
-                    <p className="text-xs uppercase tracking-[0.24em] text-white/50">Order orchestration</p>
-                    <p className="mt-2 text-lg font-semibold text-white">Event throughput</p>
+                    <p className="text-xs uppercase tracking-[0.24em] text-[#687c73]">Order orchestration</p>
+                    <p className="mt-2 text-lg font-semibold text-[#25483c]">Event throughput</p>
                   </div>
-                  <div className="text-right text-sm text-white/60">
+                  <div className="text-right text-sm text-[#5b6d65]">
                     14ms signal loop
                   </div>
                 </div>
@@ -240,7 +240,7 @@ function DashboardCard() {
                           className="w-10 rounded-t-[16px] bg-[linear-gradient(180deg,#e5d8c7_0%,#255849_100%)]"
                         />
                       </div>
-                      <span className="text-xs uppercase tracking-[0.2em] text-white/55">
+                      <span className="text-xs uppercase tracking-[0.2em] text-[#687c73]">
                         Q{index + 1}
                       </span>
                     </div>
@@ -258,14 +258,14 @@ function DashboardCard() {
 export default function Dashboard() {
   return (
     <section id="dashboard" className="mx-auto mt-16 max-w-7xl px-4 sm:px-6 lg:px-8">
-      <div className="section-shell rounded-[34px] border border-white/10 bg-white/[0.03] px-6 py-8 sm:px-8 lg:px-10 lg:py-10">
+      <div className="section-shell rounded-[34px] border border-[#255849]/12 bg-white/72 px-6 py-8 sm:px-8 lg:px-10 lg:py-10">
         <div className="grid gap-10 lg:grid-cols-[0.82fr_1.18fr] lg:items-center">
           <div className="max-w-xl">
             <p className="section-label mb-5">Dashboard Preview</p>
-            <h2 className="font-display text-3xl text-white sm:text-4xl lg:text-[3.2rem]">
+            <h2 className="font-display text-3xl text-[#25483c] sm:text-4xl lg:text-[3.2rem]">
               A floating control surface with metrics that animate into proof.
             </h2>
-            <p className="mt-4 text-base leading-7 text-white/68">
+            <p className="mt-4 text-base leading-7 text-[#556860]">
               The preview is designed as a premium command center: self-drawing charts, counter
               motion, and cinematic depth that feels closer to a product reveal than a screenshot.
             </p>
