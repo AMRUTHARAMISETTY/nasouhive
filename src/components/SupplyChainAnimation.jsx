@@ -1,4 +1,4 @@
-import { useLayoutEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import { useFrame } from "@react-three/fiber";
 import {
   AdaptiveDpr,
@@ -12,17 +12,48 @@ import {
 } from "@react-three/drei";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { CatmullRomCurve3, MathUtils, TubeGeometry, Vector3 } from "three";
+import { CatmullRomCurve3, Color, MathUtils, TubeGeometry, Vector3 } from "three";
 import { AnimatePresence, motion } from "framer-motion";
 import SceneCanvas from "./SceneCanvas";
+import DeliveryBus from "./DeliveryBus";
 
 gsap.registerPlugin(ScrollTrigger);
 
-function StoryScene({ storyState }) {
+function StoryScene({ storyState, activeStage }) {
   const rigRef = useRef(null);
   const packageRef = useRef(null);
+  const packageBodyRef = useRef(null);
+  const laneDirectionRef = useRef(new Vector3());
   const pulseRef = useRef(null);
+  const stagePulseRef = useRef(null);
+  const flashLightRef = useRef(null);
+  const burstRefs = useRef([]);
   const ringRefs = useRef([]);
+  const stageNodes = useMemo(
+    () => [
+      { label: "Industry", position: [-7.7, 0.2, 2.4], color: "#9ce9c9" },
+      { label: "Retailer", position: [-0.1, 0.2, -1.7], color: "#e6ecea" },
+      { label: "Customer", position: [7.6, 0.2, -1.3], color: "#e5d8c7" },
+    ],
+    [],
+  );
+  const burstDirections = useMemo(
+    () =>
+      Array.from({ length: 12 }, (_, index) => {
+        const angle = (index / 12) * Math.PI * 2;
+        const elevation = index % 2 === 0 ? 0.34 : 0.62;
+        return new Vector3(Math.cos(angle), elevation, Math.sin(angle)).normalize();
+      }),
+    [],
+  );
+  const burstState = useRef({
+    activeStage: 0,
+    elapsed: 1.2,
+    origin: new Vector3(-7.7, 0.2, 2.4),
+  });
+  const packageColor = useRef(new Color("#efe7da"));
+  const packageTargetColor = useRef(new Color("#e6ecea"));
+  const previousStageRef = useRef(activeStage);
 
   const curve = useMemo(
     () =>
@@ -36,6 +67,23 @@ function StoryScene({ storyState }) {
     [],
   );
   const tubeGeometry = useMemo(() => new TubeGeometry(curve, 180, 0.11, 18, false), [curve]);
+
+  useEffect(() => {
+    if (previousStageRef.current === activeStage) {
+      return;
+    }
+
+    previousStageRef.current = activeStage;
+    const node = stageNodes[activeStage];
+    if (!node) {
+      return;
+    }
+
+    burstState.current.activeStage = activeStage;
+    burstState.current.elapsed = 0;
+    burstState.current.origin.set(node.position[0], node.position[1], node.position[2]);
+    packageTargetColor.current.set(stageNodes[(activeStage + 1) % stageNodes.length].color);
+  }, [activeStage, stageNodes]);
 
   useFrame(({ camera, clock }, delta) => {
     storyState.current.progress = MathUtils.damp(
@@ -70,8 +118,10 @@ function StoryScene({ storyState }) {
     camera.position.y = MathUtils.damp(camera.position.y, MathUtils.lerp(from.y, to.y, blend), 3.5, delta);
     camera.position.z = MathUtils.damp(camera.position.z, MathUtils.lerp(from.z, to.z, blend), 3.5, delta);
 
-    const focusPoint = curve.getPointAt(MathUtils.clamp(progress * 0.92 + 0.04, 0.04, 0.98));
-    camera.lookAt(focusPoint.x, focusPoint.y + 0.8, focusPoint.z);
+    const packageT = MathUtils.clamp(progress * 0.92 + 0.04, 0.04, 0.98);
+    const packagePoint = curve.getPointAt(packageT);
+    const packageTangent = curve.getTangentAt(packageT);
+    camera.lookAt(packagePoint.x, packagePoint.y + 0.8, packagePoint.z);
 
     if (rigRef.current) {
       rigRef.current.rotation.y = MathUtils.damp(
@@ -89,12 +139,25 @@ function StoryScene({ storyState }) {
     }
 
     if (packageRef.current) {
-      const point = curve.getPointAt(Math.min(progress * 0.92 + 0.04, 0.98));
-      const tangent = curve.getTangentAt(Math.min(progress * 0.92 + 0.04, 0.98));
-      packageRef.current.position.copy(point);
+      packageRef.current.position.copy(packagePoint);
       packageRef.current.position.y += 0.2 + Math.sin(clock.elapsedTime * 3.4) * 0.05;
-      packageRef.current.lookAt(point.clone().add(tangent));
-      packageRef.current.rotation.z += delta * 0.38;
+      laneDirectionRef.current.copy(packageTangent);
+      laneDirectionRef.current.y = 0;
+      if (laneDirectionRef.current.lengthSq() > 0.0001) {
+        laneDirectionRef.current.normalize();
+        packageRef.current.rotation.set(
+          0,
+          -Math.atan2(laneDirectionRef.current.z, laneDirectionRef.current.x),
+          0,
+        );
+      }
+    }
+
+    if (packageBodyRef.current) {
+      packageColor.current.lerp(packageTargetColor.current, 1 - Math.exp(-delta * 5.2));
+      packageBodyRef.current.material.color.copy(packageColor.current);
+      packageBodyRef.current.material.emissive.copy(packageColor.current);
+      packageBodyRef.current.material.emissiveIntensity = 0.5 + glow * 0.55;
     }
 
     if (pulseRef.current) {
@@ -104,6 +167,54 @@ function StoryScene({ storyState }) {
       pulseRef.current.scale.setScalar(0.3 + glow * 0.22);
       pulseRef.current.material.opacity = 0.26 + glow * 0.2;
     }
+
+    const burst = burstState.current;
+    burst.elapsed = Math.min(1.2, burst.elapsed + delta * 2.5);
+    const burstProgress = Math.min(1, burst.elapsed);
+    const burstLife = 1 - burstProgress;
+    const burstNode = stageNodes[burst.activeStage] ?? stageNodes[0];
+
+    if (stagePulseRef.current) {
+      stagePulseRef.current.position.set(
+        burstNode.position[0],
+        burstNode.position[1] + 0.08,
+        burstNode.position[2],
+      );
+      stagePulseRef.current.scale.setScalar(0.74 + burstProgress * 2.3);
+      stagePulseRef.current.material.opacity = Math.max(0, burstLife * 0.6);
+    }
+
+    if (flashLightRef.current) {
+      flashLightRef.current.position.set(
+        burstNode.position[0],
+        burstNode.position[1] + 0.5,
+        burstNode.position[2],
+      );
+      flashLightRef.current.intensity = burstLife > 0 ? burstLife * burstLife * 7 : 0;
+    }
+
+    burstRefs.current.forEach((particle, index) => {
+      if (!particle) {
+        return;
+      }
+
+      if (burstLife <= 0) {
+        particle.visible = false;
+        return;
+      }
+
+      const direction = burstDirections[index];
+      const travel = burstProgress * (1.2 + (index % 3) * 0.22);
+      particle.visible = true;
+      particle.position.set(
+        burst.origin.x + direction.x * travel,
+        burst.origin.y + 0.16 + direction.y * travel,
+        burst.origin.z + direction.z * travel,
+      );
+      particle.scale.setScalar(0.08 + burstLife * 0.08);
+      particle.material.opacity = burstLife * 0.9;
+      particle.material.color.copy(packageTargetColor.current);
+    });
 
     ringRefs.current.forEach((ring, idx) => {
       if (!ring) {
@@ -153,11 +264,7 @@ function StoryScene({ storyState }) {
           />
         </mesh>
 
-        {[
-          { label: "Industry", position: [-7.7, 0.2, 2.4], color: "#9ce9c9" },
-          { label: "Retailer", position: [-0.1, 0.2, -1.7], color: "#e6ecea" },
-          { label: "Customer", position: [7.6, 0.2, -1.3], color: "#e5d8c7" },
-        ].map((node, index) => (
+        {stageNodes.map((node, index) => (
           <Float key={node.label} speed={1 + index * 0.18} floatIntensity={0.12}>
             <group position={node.position}>
               <mesh
@@ -185,16 +292,35 @@ function StoryScene({ storyState }) {
           </Float>
         ))}
 
-        <mesh ref={packageRef} castShadow>
-          <boxGeometry args={[0.46, 0.28, 0.3]} />
-          <meshStandardMaterial
-            color="#efe7da"
-            metalness={0.75}
-            roughness={0.14}
-            emissive="#7ae8b8"
+        <mesh ref={stagePulseRef} rotation={[-Math.PI / 2, 0, 0]}>
+          <ringGeometry args={[0.7, 0.86, 64]} />
+          <meshBasicMaterial color="#b8ffe0" transparent opacity={0} />
+        </mesh>
+
+        <pointLight ref={flashLightRef} color="#b8ffe0" intensity={0} distance={4.2} decay={2.4} />
+
+        {burstDirections.map((_, index) => (
+          <mesh
+            key={`burst-${index}`}
+            ref={(element) => {
+              burstRefs.current[index] = element;
+            }}
+            visible={false}
+          >
+            <sphereGeometry args={[0.08, 12, 12]} />
+            <meshBasicMaterial color="#d7fff0" transparent opacity={0} />
+          </mesh>
+        ))}
+
+        <group ref={packageRef}>
+          <DeliveryBus
+            scale={0.92}
+            bodyRef={packageBodyRef}
+            bodyColor="#efe7da"
+            emissiveColor="#7ae8b8"
             emissiveIntensity={0.5}
           />
-        </mesh>
+        </group>
 
         <mesh ref={pulseRef}>
           <sphereGeometry args={[0.26, 24, 24]} />
@@ -500,13 +626,17 @@ export default function SupplyChainAnimation() {
       const media = gsap.matchMedia();
       let lastStage = 0;
 
-      media.add("(min-width: 1024px)", () => {
-        storyState.current.progress = 0.02;
-        storyState.current.targetProgress = 0.02;
-        storyState.current.glow = 0.2;
-        storyState.current.targetGlow = 0.2;
+      const resetStoryState = (progress, glow) => {
+        storyState.current.progress = progress;
+        storyState.current.targetProgress = progress;
+        storyState.current.glow = glow;
+        storyState.current.targetGlow = glow;
         lastStage = 0;
         setActiveStage(0);
+      };
+
+      media.add("(min-width: 1024px)", () => {
+        resetStoryState(0.02, 0.2);
 
         const trigger = ScrollTrigger.create({
           trigger: sectionRef.current,
@@ -533,12 +663,7 @@ export default function SupplyChainAnimation() {
       });
 
       media.add("(max-width: 1023px)", () => {
-        storyState.current.progress = 0.08;
-        storyState.current.targetProgress = 0.08;
-        storyState.current.glow = 0.24;
-        storyState.current.targetGlow = 0.24;
-        lastStage = 0;
-        setActiveStage(0);
+        resetStoryState(0.08, 0.24);
 
         const trigger = ScrollTrigger.create({
           trigger: sectionRef.current,
@@ -590,7 +715,7 @@ export default function SupplyChainAnimation() {
                   gl={{ antialias: false, alpha: true }}
                   camera={{ position: [-7.2, 2.7, 10.8], fov: 32 }}
                 >
-                  <StoryScene storyState={storyState} />
+                  <StoryScene storyState={storyState} activeStage={activeStage} />
                 </SceneCanvas>
               </div>
 
