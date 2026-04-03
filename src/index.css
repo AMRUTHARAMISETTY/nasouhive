@@ -185,3 +185,53 @@ button {
     letter-spacing: 0.24em;
   }
 }
+
+@layer base {
+  body {
+    overflow-x: hidden;
+  }
+}
+
+@layer components {
+  .glass {
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.08);
+  }
+
+  .glass-card {
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(31, 92, 74, 0.2);
+    border-radius: 2rem;
+    box-shadow: 0 20px 40px -12px rgba(0, 0, 0, 0.1);
+  }
+
+  .glass-panel {
+    background: rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(14px);
+    border-radius: 1rem;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+  }
+
+  .eco-badge {
+    background: rgba(31, 92, 74, 0.2);
+    color: #1f5c4a;
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 0.25rem 0.5rem;
+    border-radius: 9999px;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+  }
+}
+
+@layer utilities {
+  .bg-cream { background-color: #efe7da; }
+  .bg-primary { background-color: #1f5c4a; }
+  .bg-primary-dark { background-color: #255849; }
+  .text-primary { color: #1f5c4a; }
+  .border-primary { border-color: #1f5c4a; }
+}

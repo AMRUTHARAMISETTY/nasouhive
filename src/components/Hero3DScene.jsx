@@ -12,6 +12,7 @@ import {
 import { motion } from "framer-motion";
 import { gsap } from "gsap";
 import { CatmullRomCurve3, Color, MathUtils, TubeGeometry, Vector3 } from "three";
+import { Link } from "react-router-dom";
 import SceneCanvas from "./SceneCanvas";
 import DeliveryBus from "./DeliveryBus";
 
@@ -1166,14 +1167,18 @@ export default function Hero3DScene() {
                 </p>
 
                 <div className="mt-8 flex flex-col gap-4 sm:flex-row">
-                  <motion.a
+                  <motion.div
                     whileHover={{ scale: 1.02, y: -2 }}
                     whileTap={{ scale: 0.98 }}
-                    href="#cta"
-                    className="button-primary inline-flex items-center justify-center rounded-full px-6 py-3.5 text-sm font-semibold transition"
+                    className="inline-flex"
                   >
-                    Book the live walkthrough
-                  </motion.a>
+                    <Link
+                      to="/app/auth"
+                      className="button-primary inline-flex items-center justify-center rounded-full px-6 py-3.5 text-sm font-semibold transition"
+                    >
+                      Get Started
+                    </Link>
+                  </motion.div>
                   <motion.a
                     whileHover={{ scale: 1.02, y: -2 }}
                     whileTap={{ scale: 0.98 }}

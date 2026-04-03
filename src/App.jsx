@@ -1,6 +1,8 @@
 import { Suspense, lazy } from "react";
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 import Features from "./components/Features";
+import ChatbotWidget from "./components/ChatbotWidget";
 
 const Hero3DScene = lazy(() => import("./components/Hero3DScene"));
 const SupplyChainAnimation = lazy(() => import("./components/SupplyChainAnimation"));
@@ -51,9 +53,12 @@ export default function App() {
             <a href="#dashboard" className="transition hover:text-[#1f5c4a]">
               Visibility
             </a>
-            <a href="#cta" className="transition hover:text-[#1f5c4a]">
-              Launch
-            </a>
+            <Link
+              to="/app/auth"
+              className="rounded-full bg-[#1f5c4a] px-4 py-1.5 !text-white transition hover:bg-[#255849]"
+            >
+              Get Started
+            </Link>
           </nav>
         </div>
       </header>
@@ -110,6 +115,7 @@ export default function App() {
           <CTA />
         </Suspense>
       </main>
+      <ChatbotWidget />
     </div>
   );
 }

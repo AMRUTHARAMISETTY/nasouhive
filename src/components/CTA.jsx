@@ -1,5 +1,6 @@
 import { useMemo } from "react";
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 
 export default function CTA() {
   const particles = useMemo(
@@ -63,14 +64,18 @@ export default function CTA() {
           </p>
 
           <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
-            <motion.a
+            <motion.div
               whileHover={{ scale: 1.02, y: -2 }}
               whileTap={{ scale: 0.98 }}
-              href="mailto:hello@nasouhive.com"
-              className="button-primary inline-flex min-w-[220px] items-center justify-center rounded-full px-7 py-4 text-sm font-semibold"
+              className="inline-flex"
             >
-              Start the product walkthrough
-            </motion.a>
+              <Link
+                to="/app/auth"
+                className="button-primary inline-flex min-w-[220px] items-center justify-center rounded-full px-7 py-4 text-sm font-semibold"
+              >
+                Get Started
+              </Link>
+            </motion.div>
             <motion.a
               whileHover={{ scale: 1.02, y: -2 }}
               whileTap={{ scale: 0.98 }}
