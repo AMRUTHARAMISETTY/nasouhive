@@ -1139,26 +1139,12 @@ export default function Hero3DScene() {
   return (
     <section id="top" className="relative pt-0">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="section-shell min-h-[calc(100vh-88px)] rounded-[34px] border border-[#E5D8C7]/80 bg-[#1F5C4A] shadow-[0_30px_100px_rgba(37,88,73,0.14)] lg:h-[calc(100vh-88px)]">
-          <div className="absolute inset-0 bg-[#1F5C4A]" />
-          <div className="absolute inset-0">
-            <SceneCanvas
-              fallback={<HeroSceneFallback />}
-              className="!h-full !w-full brightness-[1.28] saturate-[1.18]"
-              style={{ width: "100%", height: "100%" }}
-              shadows="percentage"
-              dpr={[1, 1.25]}
-              gl={{ antialias: false, alpha: true }}
-              camera={{ position: [-6.65, 3.15, 13.8], fov: 38 }}
-            >
-              <HeroScene />
-            </SceneCanvas>
-          </div>
-          <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(239,234,225,0.9)_0%,rgba(239,234,225,0.72)_38%,rgba(31,92,74,0.05)_68%,rgba(31,92,74,0.14)_100%)]" />
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_20%,rgba(255,255,255,0.68),transparent_28%),radial-gradient(circle_at_78%_12%,rgba(230,236,234,0.2),transparent_26%)]" />
+        <div className="section-shell min-h-[calc(100vh+56px)] rounded-[34px] border border-[#E5D8C7]/80 bg-[#EFEAE1] shadow-[0_30px_100px_rgba(37,88,73,0.14)] lg:h-[calc(100vh+56px)]">
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_28%_18%,rgba(255,255,255,0.74),transparent_28%),radial-gradient(circle_at_86%_12%,rgba(230,236,234,0.82),transparent_24%),linear-gradient(180deg,#EFEAE1_0%,#EFE7DA_100%)]" />
 
-          <div className="relative z-10 flex min-h-[calc(100vh-88px)] flex-col justify-center px-6 py-7 sm:px-8 lg:h-full lg:px-10 lg:py-8">
-            <div className="max-w-2xl">
+          <div className="relative z-10 grid min-h-[calc(100vh+56px)] grid-cols-1 gap-6 px-6 py-7 sm:px-8 lg:h-full lg:grid-cols-[1.04fr_0.96fr] lg:px-10 lg:py-8">
+            <div className="flex flex-col justify-between">
+              <div className="max-w-2xl pt-2 lg:pt-4">
                 <p className="section-label mb-4">
                   Cinematic Supply Intelligence
                 </p>
@@ -1193,8 +1179,64 @@ export default function Hero3DScene() {
                     href="#story"
                     className="inline-flex items-center justify-center rounded-full border border-[#E5D8C7] bg-[#FFFFFF]/80 px-6 py-3.5 text-sm font-semibold text-[#1F5C4A] shadow-[0_16px_36px_rgba(37,88,73,0.12)] transition hover:bg-[#E6ECEA]"
                   >
-                  Explore the motion system
-                </motion.a>
+                    Explore the motion system
+                  </motion.a>
+                </div>
+              </div>
+
+              <div className="grid max-w-2xl grid-cols-1 gap-3 pt-5 sm:grid-cols-3">
+                {[
+                  ["98.2%", "Forecast-to-fill accuracy"],
+                  ["27%", "Fewer reactive escalations"],
+                  ["3x", "Faster retailer replenishment"],
+                ].map(([value, label]) => (
+                  <div
+                    key={label}
+                    className="rounded-[24px] border border-[#E5D8C7] bg-[#FFFFFF]/80 px-4 py-4 text-left shadow-[0_18px_40px_rgba(37,88,73,0.1)] backdrop-blur-2xl"
+                  >
+                    <div className="font-display text-xl text-[#1F5C4A] lg:text-2xl">{value}</div>
+                    <div className="mt-2 text-sm leading-6 text-[#255849]">{label}</div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="relative h-[520px] sm:h-[680px] lg:h-full">
+              <div className="absolute inset-0 sm:bottom-[72px] lg:bottom-[84px]">
+                <div className="absolute inset-0 rounded-[28px] border border-[#1F5C4A]/20 bg-[#1F5C4A] shadow-[0_30px_80px_rgba(31,92,74,0.22)]" />
+                <SceneCanvas
+                  fallback={<HeroSceneFallback />}
+                  className="!h-full !w-full"
+                  style={{ width: "100%", height: "100%" }}
+                  shadows="percentage"
+                  dpr={[1, 1.25]}
+                  gl={{ antialias: false, alpha: true }}
+                  camera={{ position: [-6.65, 3.15, 13.8], fov: 38 }}
+                >
+                  <HeroScene />
+                </SceneCanvas>
+              </div>
+
+              <div className="pointer-events-none absolute inset-x-4 bottom-3 z-20 grid gap-3 sm:inset-x-5 sm:bottom-4 sm:grid-cols-3">
+                {[
+                  ["Industry", "Supplier pulse, manufacturing readiness"],
+                  ["Retailer", "Shelf velocity, replenishment timing"],
+                  ["Customer", "Order promise, delivery confidence"],
+                ].map(([label, copy], index) => (
+                  <motion.div
+                    key={label}
+                    initial={{ opacity: 0, y: 18 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.65 + index * 0.08, duration: 0.7 }}
+                    className="rounded-[22px] border border-[#E5D8C7] bg-[#FFFFFF]/86 px-4 py-3 text-left shadow-[0_16px_36px_rgba(37,88,73,0.12)] backdrop-blur-xl"
+                  >
+                    <div className="mb-1.5 flex items-center gap-2">
+                      <span className="inline-flex h-2.5 w-2.5 rounded-full bg-[#255849]" />
+                      <span className="text-sm font-semibold text-[#1F5C4A]">{label}</span>
+                    </div>
+                    <p className="text-xs leading-5 text-[#255849]">{copy}</p>
+                  </motion.div>
+                ))}
               </div>
             </div>
           </div>
