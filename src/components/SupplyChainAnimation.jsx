@@ -693,23 +693,25 @@ export default function SupplyChainAnimation() {
         <div className="lg:min-h-screen">
           <div
             ref={sectionShellRef}
-            className="section-shell rounded-[34px] border border-[#E5D8C7]/80 bg-[#EFEAE1] shadow-[0_30px_100px_rgba(37,88,73,0.12)] lg:h-screen"
+            className="section-shell rounded-[34px] border border-[#E5D8C7]/80 bg-[#1F5C4A] shadow-[0_30px_100px_rgba(37,88,73,0.12)] lg:h-screen"
           >
-            <div className="grid h-full grid-cols-1 lg:grid-cols-[1.18fr_0.82fr]">
-              <div className="relative h-[360px] bg-[#1F5C4A] sm:h-[460px] lg:h-full">
-                <SceneCanvas
-                  fallback={<StorySceneFallback />}
-                  className="!h-full !w-full"
-                  style={{ width: "100%", height: "100%" }}
-                  shadows="percentage"
-                  dpr={[1, 1.25]}
-                  gl={{ antialias: false, alpha: true }}
-                  camera={{ position: [-7.2, 2.7, 10.8], fov: 32 }}
-                >
-                  <StoryScene storyState={storyState} activeStage={activeStage} />
-                </SceneCanvas>
-              </div>
+            <div className="absolute inset-0 bg-[#1F5C4A]">
+              <SceneCanvas
+                fallback={<StorySceneFallback />}
+                className="!h-full !w-full brightness-[1.28] saturate-[1.2]"
+                style={{ width: "100%", height: "100%" }}
+                shadows="percentage"
+                dpr={[1, 1.25]}
+                gl={{ antialias: false, alpha: true }}
+                camera={{ position: [-7.2, 2.7, 10.8], fov: 32 }}
+              >
+                <StoryScene storyState={storyState} activeStage={activeStage} />
+              </SceneCanvas>
+            </div>
+            <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(90deg,rgba(239,234,225,0.9)_0%,rgba(239,234,225,0.72)_42%,rgba(31,92,74,0.08)_72%,rgba(31,92,74,0.18)_100%)]" />
+            <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_18%_22%,rgba(255,255,255,0.52),transparent_31%)]" />
 
+            <div className="relative z-10 grid h-full grid-cols-1 lg:grid-cols-[0.92fr_1.08fr]">
               <div className="relative z-10 px-6 py-8 sm:px-10 sm:py-10 lg:flex lg:h-full lg:flex-col lg:justify-center lg:px-12 lg:py-12">
                 <div className="max-w-xl">
                   <p className="section-label mb-5">Scroll Storytelling</p>
@@ -735,7 +737,7 @@ export default function SupplyChainAnimation() {
                         className={`rounded-full border px-4 py-2 text-sm transition-colors duration-300 ${
                           activeStage === index
                             ? "border-[#255849] bg-[#E6ECEA] text-[#1F5C4A] shadow-[0_12px_28px_rgba(37,88,73,0.12)]"
-                            : "border-[#E5D8C7] bg-[#FFFFFF]/70 text-[#255849]"
+                            : "border-[#E5D8C7] bg-[#FFFFFF]/74 text-[#255849]"
                         }`}
                       >
                         <span className="font-medium">0{index + 1}</span>
@@ -744,7 +746,7 @@ export default function SupplyChainAnimation() {
                     ))}
                   </div>
 
-                  <div className="relative min-h-[250px] overflow-hidden rounded-[28px] border border-[#E5D8C7] bg-[#FFFFFF]/78 px-7 py-7 shadow-[0_18px_44px_rgba(37,88,73,0.08)]">
+                  <div className="relative min-h-[250px] overflow-hidden rounded-[28px] border border-[#E5D8C7] bg-[#FFFFFF]/76 px-7 py-7 shadow-[0_18px_44px_rgba(37,88,73,0.08)] backdrop-blur-xl">
                     <AnimatePresence mode="wait">
                       <motion.div
                         key={storyPanels[activeStage].title}
@@ -803,9 +805,23 @@ export default function SupplyChainAnimation() {
       </section>
 
       <section className="relative z-10 mx-auto mt-20 max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="section-shell rounded-[34px] border border-[#E5D8C7]/80 bg-[#EFEAE1] px-6 py-8 shadow-[0_30px_100px_rgba(37,88,73,0.12)] sm:px-8 lg:px-10 lg:py-10">
-          <div className="grid gap-8 lg:grid-cols-[0.8fr_1.2fr] lg:items-center">
-            <div className="max-w-xl">
+        <div className="section-shell min-h-[680px] rounded-[34px] border border-[#E5D8C7]/80 bg-[#1F5C4A] px-6 py-8 shadow-[0_30px_100px_rgba(37,88,73,0.12)] sm:px-8 lg:px-10 lg:py-10">
+          <div className="absolute inset-0 bg-[#1F5C4A]">
+            <SceneCanvas
+              fallback={<NetworkSceneFallback />}
+              className="!h-full !w-full brightness-[1.32] saturate-[1.18]"
+              style={{ width: "100%", height: "100%" }}
+              dpr={[1, 1.2]}
+              gl={{ antialias: false, alpha: true }}
+              onPointerMissed={() => setActiveNode(null)}
+            >
+              <NetworkScene activeNode={activeNode} setActiveNode={setActiveNode} />
+            </SceneCanvas>
+          </div>
+          <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(90deg,rgba(239,234,225,0.9)_0%,rgba(239,234,225,0.7)_42%,rgba(31,92,74,0.04)_74%,rgba(31,92,74,0.16)_100%)]" />
+
+          <div className="pointer-events-none relative z-10 grid min-h-[610px] gap-8 lg:grid-cols-[0.82fr_1.18fr] lg:items-center">
+            <div className="pointer-events-auto max-w-xl">
               <p className="section-label mb-5">Interactive Network</p>
               <h2 className="font-display text-3xl text-[#1F5C4A] sm:text-4xl">
                 A floating graph of industries, retailers, and customers.
@@ -822,7 +838,7 @@ export default function SupplyChainAnimation() {
                   ["360°", "network visibility layer"],
                   ["14 ms", "signal propagation"],
                 ].map(([value, label]) => (
-                  <div key={label} className="rounded-[22px] border border-[#E5D8C7] bg-[#FFFFFF]/82 px-4 py-4 shadow-[0_14px_34px_rgba(37,88,73,0.08)]">
+                  <div key={label} className="rounded-[22px] border border-[#E5D8C7] bg-[#FFFFFF]/76 px-4 py-4 shadow-[0_14px_34px_rgba(37,88,73,0.08)] backdrop-blur-xl">
                     <div className="font-display text-2xl text-[#1F5C4A]">{value}</div>
                     <div className="mt-1 text-sm text-[#255849]">{label}</div>
                   </div>
@@ -830,19 +846,8 @@ export default function SupplyChainAnimation() {
               </div>
             </div>
 
-            <div className="relative h-[460px] overflow-hidden rounded-[28px] border border-[#1F5C4A]/20 bg-[#1F5C4A] sm:h-[560px]">
-              <SceneCanvas
-                fallback={<NetworkSceneFallback />}
-                className="!h-full !w-full"
-                style={{ width: "100%", height: "100%" }}
-                dpr={[1, 1.2]}
-                gl={{ antialias: false, alpha: true }}
-                onPointerMissed={() => setActiveNode(null)}
-              >
-                <NetworkScene activeNode={activeNode} setActiveNode={setActiveNode} />
-              </SceneCanvas>
-
-              <div className="pointer-events-none absolute left-5 top-5 rounded-full border border-[#E5D8C7]/50 bg-[#FFFFFF]/12 px-4 py-2 text-xs font-semibold uppercase tracking-[0.24em] text-[#E6ECEA] backdrop-blur-xl">
+            <div className="pointer-events-none hidden min-h-[460px] lg:block">
+              <div className="absolute right-10 top-10 rounded-full border border-[#E5D8C7]/50 bg-[#FFFFFF]/14 px-4 py-2 text-xs font-semibold uppercase tracking-[0.24em] text-[#E6ECEA] backdrop-blur-xl">
                 Hover a node to isolate the path
               </div>
             </div>
