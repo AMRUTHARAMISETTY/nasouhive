@@ -5,7 +5,6 @@ export const manufacturerNavItems = [
   { key: 'manufacturing', label: 'Manufacturing', icon: 'flow' },
   { key: 'inventory', label: 'Inventory', icon: 'archive' },
   { key: 'quality', label: 'Quality Control', icon: 'shield' },
-  { key: 'machines', label: 'Machines', icon: 'cpu' },
   { key: 'supply-chain', label: 'Supply Chain', icon: 'truck' },
   { key: 'orders', label: 'Orders', icon: 'file' },
   { key: 'warehouses', label: 'Warehouses', icon: 'map' },

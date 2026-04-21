@@ -6,7 +6,6 @@ import {
   Float,
   PerspectiveCamera,
   Preload,
-  Sparkles,
   Text,
 } from "@react-three/drei";
 import { motion } from "framer-motion";
@@ -17,15 +16,15 @@ import SceneCanvas from "./SceneCanvas";
 import DeliveryBus from "./DeliveryBus";
 
 const stageStops = [0.09, 0.5, 0.9];
-const nodeColor = ["#9fe9c8", "#d7f6e9", "#e5d8c7"];
+const nodeColor = ["#E6ECEA", "#E6ECEA", "#E5D8C7"];
 const packageOffsets = [0, 0.23, 0.47, 0.73];
 const returnPackageOffsets = [0.08, 0.39, 0.72];
 const dataPacketConfig = [
-  { curveIndex: 0, offset: 0.06, speed: 0.16, color: "#9fe9c8" },
-  { curveIndex: 0, offset: 0.38, speed: 0.18, color: "#e6ecea" },
-  { curveIndex: 0, offset: 0.7, speed: 0.15, color: "#e5d8c7" },
-  { curveIndex: 1, offset: 0.14, speed: 0.2, color: "#9fe9c8" },
-  { curveIndex: 1, offset: 0.52, speed: 0.17, color: "#e6ecea" },
+  { curveIndex: 0, offset: 0.06, speed: 0.16, color: "#E6ECEA" },
+  { curveIndex: 0, offset: 0.38, speed: 0.18, color: "#E6ECEA" },
+  { curveIndex: 0, offset: 0.7, speed: 0.15, color: "#E5D8C7" },
+  { curveIndex: 1, offset: 0.14, speed: 0.2, color: "#E6ECEA" },
+  { curveIndex: 1, offset: 0.52, speed: 0.17, color: "#E6ECEA" },
 ];
 const stageBurstAngles = [0, Math.PI / 3, (2 * Math.PI) / 3, Math.PI, (4 * Math.PI) / 3, (5 * Math.PI) / 3];
 const packageStateStops = [0.04, 0.24, 0.62, 0.92];
@@ -35,7 +34,7 @@ function FactoryModel(props) {
     <group {...props}>
       <mesh position={[0, 0.45, 0]} castShadow receiveShadow>
         <boxGeometry args={[1.25, 0.8, 1.2]} />
-        <meshStandardMaterial color="#e6ecea" metalness={0.42} roughness={0.25} />
+        <meshStandardMaterial color="#E6ECEA" metalness={0.42} roughness={0.25} />
       </mesh>
       <mesh position={[0, 1.08, 0]} castShadow>
         <boxGeometry args={[0.9, 0.55, 0.92]} />
@@ -44,18 +43,18 @@ function FactoryModel(props) {
       {[-0.34, 0, 0.34].map((x) => (
         <mesh key={x} position={[x, 0.48, 0.62]}>
           <boxGeometry args={[0.18, 0.18, 0.02]} />
-          <meshBasicMaterial color="#8bf1cb" />
+          <meshBasicMaterial color="#255849" />
         </mesh>
       ))}
       {[-0.35, 0.35].map((x) => (
         <mesh key={x} position={[x, 1.75, -0.2]} castShadow>
           <cylinderGeometry args={[0.13, 0.18, 1.2, 18]} />
-          <meshStandardMaterial color="#d9e4dd" metalness={0.5} roughness={0.2} />
+          <meshStandardMaterial color="#E6ECEA" metalness={0.5} roughness={0.2} />
         </mesh>
       ))}
       <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, 0.04, 0]}>
         <cylinderGeometry args={[1.15, 1.15, 0.08, 48]} />
-        <meshStandardMaterial color="#112a23" roughness={0.7} metalness={0.25} />
+        <meshStandardMaterial color="#1F5C4A" roughness={0.7} metalness={0.25} />
       </mesh>
     </group>
   );
@@ -66,7 +65,7 @@ function StoreModel(props) {
     <group {...props}>
       <mesh position={[0, 0.55, 0]} castShadow>
         <boxGeometry args={[1.2, 0.85, 1.05]} />
-        <meshStandardMaterial color="#e5d8c7" metalness={0.18} roughness={0.34} />
+        <meshStandardMaterial color="#E5D8C7" metalness={0.18} roughness={0.34} />
       </mesh>
       <mesh position={[0, 1.15, 0]} castShadow>
         <boxGeometry args={[1.35, 0.25, 1.15]} />
@@ -74,17 +73,17 @@ function StoreModel(props) {
       </mesh>
       <mesh position={[0, 0.62, 0.56]}>
         <boxGeometry args={[0.4, 0.48, 0.05]} />
-        <meshBasicMaterial color="#97e2c2" />
+        <meshBasicMaterial color="#255849" />
       </mesh>
       {[-0.38, 0, 0.38].map((x) => (
         <mesh key={x} position={[x, 1.1, 0.6]}>
           <boxGeometry args={[0.18, 0.1, 0.03]} />
-          <meshBasicMaterial color="#d9f5e7" />
+          <meshBasicMaterial color="#E6ECEA" />
         </mesh>
       ))}
       <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, 0.04, 0]}>
         <cylinderGeometry args={[1.08, 1.08, 0.08, 48]} />
-        <meshStandardMaterial color="#112a23" roughness={0.7} metalness={0.25} />
+        <meshStandardMaterial color="#1F5C4A" roughness={0.7} metalness={0.25} />
       </mesh>
     </group>
   );
@@ -95,7 +94,7 @@ function CustomerModel(props) {
     <group {...props}>
       <mesh position={[0, 0.6, 0]} castShadow>
         <boxGeometry args={[1, 0.8, 1]} />
-        <meshStandardMaterial color="#e6ecea" metalness={0.25} roughness={0.3} />
+        <meshStandardMaterial color="#E6ECEA" metalness={0.25} roughness={0.3} />
       </mesh>
       <mesh position={[0, 1.14, 0]} rotation={[0, 0, Math.PI / 4]} castShadow>
         <boxGeometry args={[0.95, 0.95, 0.95]} />
@@ -103,11 +102,11 @@ function CustomerModel(props) {
       </mesh>
       <mesh position={[0, 0.6, 0.52]}>
         <boxGeometry args={[0.28, 0.42, 0.06]} />
-        <meshBasicMaterial color="#93efc8" />
+        <meshBasicMaterial color="#E6ECEA" />
       </mesh>
       <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, 0.04, 0]}>
         <cylinderGeometry args={[0.98, 0.98, 0.08, 48]} />
-        <meshStandardMaterial color="#112a23" roughness={0.7} metalness={0.25} />
+        <meshStandardMaterial color="#1F5C4A" roughness={0.7} metalness={0.25} />
       </mesh>
     </group>
   );
@@ -118,27 +117,27 @@ function IndustryMachinery({ baseRef, elbowRef, bayRef, clawLeftRef, clawRightRe
     <group position={[1.18, 0.06, 0.34]}>
       <mesh position={[-0.04, 0.08, 0]} receiveShadow castShadow>
         <boxGeometry args={[0.94, 0.14, 0.72]} />
-        <meshStandardMaterial color="#d6ddd8" metalness={0.28} roughness={0.28} />
+        <meshStandardMaterial color="#E6ECEA" metalness={0.28} roughness={0.28} />
       </mesh>
       <mesh ref={bayRef} position={[-0.12, 0.18, 0.02]}>
         <boxGeometry args={[0.72, 0.08, 0.5]} />
         <meshStandardMaterial
-          color="#143128"
+          color="#1F5C4A"
           metalness={0.48}
           roughness={0.18}
-          emissive="#7de6bc"
+          emissive="#255849"
           emissiveIntensity={0.22}
         />
       </mesh>
       <mesh position={[0.28, 0.17, 0.22]} castShadow>
         <boxGeometry args={[0.16, 0.12, 0.18]} />
-        <meshStandardMaterial color="#efe7da" metalness={0.64} roughness={0.14} />
+        <meshStandardMaterial color="#EFE7DA" metalness={0.64} roughness={0.14} />
       </mesh>
 
       <group position={[0.3, 0.14, -0.18]}>
         <mesh position={[0, 0.12, 0]} castShadow>
           <cylinderGeometry args={[0.18, 0.22, 0.24, 18]} />
-          <meshStandardMaterial color="#dce5df" metalness={0.55} roughness={0.18} />
+          <meshStandardMaterial color="#E6ECEA" metalness={0.55} roughness={0.18} />
         </mesh>
 
         <group ref={baseRef} position={[0, 0.2, 0]} rotation={[0, 0, -0.42]}>
@@ -150,17 +149,17 @@ function IndustryMachinery({ baseRef, elbowRef, bayRef, clawLeftRef, clawRightRe
           <group ref={elbowRef} position={[0, 0.62, 0]} rotation={[0, 0, 0.92]}>
             <mesh position={[0, 0.24, 0]} castShadow>
               <boxGeometry args={[0.14, 0.56, 0.14]} />
-              <meshStandardMaterial color="#dce5df" metalness={0.62} roughness={0.16} />
+              <meshStandardMaterial color="#E6ECEA" metalness={0.62} roughness={0.16} />
             </mesh>
 
             <group position={[0, 0.5, 0]}>
               <mesh ref={clawLeftRef} position={[-0.09, 0.02, 0]} castShadow>
                 <boxGeometry args={[0.05, 0.2, 0.08]} />
-                <meshStandardMaterial color="#7fe5be" metalness={0.52} roughness={0.2} />
+                <meshStandardMaterial color="#255849" metalness={0.52} roughness={0.2} />
               </mesh>
               <mesh ref={clawRightRef} position={[0.09, 0.02, 0]} castShadow>
                 <boxGeometry args={[0.05, 0.2, 0.08]} />
-                <meshStandardMaterial color="#7fe5be" metalness={0.52} roughness={0.2} />
+                <meshStandardMaterial color="#255849" metalness={0.52} roughness={0.2} />
               </mesh>
             </group>
           </group>
@@ -175,12 +174,12 @@ function RetailMachinery({ beamRef, scannerRingRef, flapRef }) {
     <group position={[1.04, 0.08, 0.58]}>
       <mesh position={[0, 0.08, 0]} receiveShadow castShadow>
         <boxGeometry args={[1, 0.12, 0.82]} />
-        <meshStandardMaterial color="#e0d8ce" metalness={0.18} roughness={0.32} />
+        <meshStandardMaterial color="#E5D8C7" metalness={0.18} roughness={0.32} />
       </mesh>
       {[-0.32, 0.32].map((x) => (
         <mesh key={x} position={[x, 0.58, 0]} castShadow>
           <boxGeometry args={[0.12, 0.92, 0.12]} />
-          <meshStandardMaterial color="#dce4de" metalness={0.48} roughness={0.18} />
+          <meshStandardMaterial color="#E6ECEA" metalness={0.48} roughness={0.18} />
         </mesh>
       ))}
       <mesh position={[0, 1.02, 0]} castShadow>
@@ -189,13 +188,13 @@ function RetailMachinery({ beamRef, scannerRingRef, flapRef }) {
       </mesh>
       <mesh ref={beamRef} position={[0, 0.56, 0]}>
         <boxGeometry args={[0.82, 0.78, 0.03]} />
-        <meshBasicMaterial color="#95efc7" transparent opacity={0.16} />
+        <meshBasicMaterial color="#E6ECEA" transparent opacity={0.16} />
       </mesh>
       <mesh ref={scannerRingRef} rotation={[-Math.PI / 2, 0, 0]} position={[0, 0.16, 0]}>
         <ringGeometry args={[0.42, 0.56, 40]} />
         <meshStandardMaterial
-          color="#e5d8c7"
-          emissive="#e5d8c7"
+          color="#E5D8C7"
+          emissive="#E5D8C7"
           emissiveIntensity={0.3}
           transparent
           opacity={0.78}
@@ -209,7 +208,7 @@ function RetailMachinery({ beamRef, scannerRingRef, flapRef }) {
             color="#255849"
             metalness={0.62}
             roughness={0.16}
-            emissive="#82e8bb"
+            emissive="#255849"
             emissiveIntensity={0.22}
           />
         </mesh>
@@ -224,10 +223,10 @@ function CustomerMachinery({ ringRef, haloRef, padRef, beaconRef }) {
       <mesh ref={padRef} position={[0, 0.08, 0]} receiveShadow castShadow>
         <boxGeometry args={[1.04, 0.14, 0.76]} />
         <meshStandardMaterial
-          color="#dfe7e1"
+          color="#E6ECEA"
           metalness={0.28}
           roughness={0.28}
-          emissive="#83e8bc"
+          emissive="#255849"
           emissiveIntensity={0.12}
         />
       </mesh>
@@ -237,13 +236,13 @@ function CustomerMachinery({ ringRef, haloRef, padRef, beaconRef }) {
       </mesh>
       <mesh ref={haloRef} rotation={[-Math.PI / 2, 0, 0]} position={[0, 0.12, 0]}>
         <ringGeometry args={[0.48, 0.8, 48]} />
-        <meshBasicMaterial color="#9fe9c8" transparent opacity={0.22} />
+        <meshBasicMaterial color="#E6ECEA" transparent opacity={0.22} />
       </mesh>
       <mesh ref={ringRef} rotation={[-Math.PI / 2, 0, 0]} position={[0, 0.34, 0]}>
         <torusGeometry args={[0.5, 0.045, 16, 80]} />
         <meshStandardMaterial
-          color="#e5d8c7"
-          emissive="#e5d8c7"
+          color="#E5D8C7"
+          emissive="#E5D8C7"
           emissiveIntensity={0.45}
           transparent
           opacity={0.9}
@@ -251,7 +250,7 @@ function CustomerMachinery({ ringRef, haloRef, padRef, beaconRef }) {
       </mesh>
       <mesh ref={beaconRef} position={[0, 0.72, 0]}>
         <sphereGeometry args={[0.08, 18, 18]} />
-        <meshBasicMaterial color="#9bf0c9" transparent opacity={0.8} />
+        <meshBasicMaterial color="#E6ECEA" transparent opacity={0.8} />
       </mesh>
     </group>
   );
@@ -308,7 +307,7 @@ function StageNode({ index, position, label, children, ringRef, pulseRef, lightR
           position={[0, 1.95, 0]}
           fontSize={0.38}
           letterSpacing={0.04}
-          color="#eef6f1"
+          color="#E6ECEA"
           anchorX="center"
           anchorY="middle"
         >
@@ -420,10 +419,10 @@ function HeroScene() {
   );
   const packagePalette = useMemo(
     () => [
-      { base: new Color("#efe7da"), emissive: new Color("#7ae8b8") },
-      { base: new Color("#dff2e8"), emissive: new Color("#8ef0c9") },
-      { base: new Color("#9fe9c8"), emissive: new Color("#6ee4ad") },
-      { base: new Color("#f2e4d3"), emissive: new Color("#f0dfc8") },
+      { base: new Color("#EFE7DA"), emissive: new Color("#255849") },
+      { base: new Color("#E6ECEA"), emissive: new Color("#255849") },
+      { base: new Color("#E6ECEA"), emissive: new Color("#255849") },
+      { base: new Color("#EFEAE1"), emissive: new Color("#E5D8C7") },
     ],
     [],
   );
@@ -840,50 +839,46 @@ function HeroScene() {
 
   return (
     <>
-      <color attach="background" args={["#051713"]} />
-      <fog attach="fog" args={["#051713", 11, 28]} />
       <PerspectiveCamera makeDefault fov={38} position={[-6.65, 3.15, 13.8]} />
       <ambientLight intensity={0.42} />
-      <hemisphereLight args={["#dff9ed", "#0a1b15", 0.72]} />
+      <hemisphereLight args={["#E6ECEA", "#1F5C4A", 0.72]} />
       <directionalLight
         castShadow
         intensity={1.65}
         position={[4.5, 8, 5]}
-        color="#fff7ea"
+        color="#FFFFFF"
         shadow-mapSize-width={2048}
         shadow-mapSize-height={2048}
       />
-      <spotLight position={[-7, 8, 4]} intensity={2.4} angle={0.35} penumbra={0.8} color="#84f0c4" />
-      <pointLight position={[0, 2.2, 0]} intensity={1.8} color="#7ddcb5" />
-      <Sparkles count={80} size={4} scale={[20, 10, 16]} speed={0.24} color="#e9fff5" />
-
+      <spotLight position={[-7, 8, 4]} intensity={2.4} angle={0.35} penumbra={0.8} color="#255849" />
+      <pointLight position={[0, 2.2, 0]} intensity={1.8} color="#255849" />
       <group ref={groupRef} position={[0, -1, 0]}>
         <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, -0.1, 0]} receiveShadow>
           <circleGeometry args={[13, 80]} />
-          <meshStandardMaterial color="#071b16" roughness={0.86} metalness={0.08} />
+          <meshStandardMaterial color="#1F5C4A" roughness={0.86} metalness={0.08} />
         </mesh>
 
         <mesh geometry={glowGeometry}>
-          <meshBasicMaterial color="#59d8a3" transparent opacity={0.16} />
+          <meshBasicMaterial color="#255849" transparent opacity={0.16} />
         </mesh>
         <mesh geometry={returnGlowGeometry}>
-          <meshBasicMaterial color="#e5d8c7" transparent opacity={0.12} />
+          <meshBasicMaterial color="#E5D8C7" transparent opacity={0.12} />
         </mesh>
         <mesh geometry={tubeGeometry} ref={tubeRef}>
           <meshStandardMaterial
-            color="#0f221d"
+            color="#1F5C4A"
             metalness={0.5}
             roughness={0.18}
-            emissive="#65ebb5"
+            emissive="#255849"
             emissiveIntensity={0.7}
           />
         </mesh>
         <mesh geometry={returnTubeGeometry} ref={returnTubeRef}>
           <meshStandardMaterial
-            color="#122620"
+            color="#1F5C4A"
             metalness={0.42}
             roughness={0.22}
-            emissive="#dfeee7"
+            emissive="#E6ECEA"
             emissiveIntensity={0.3}
           />
         </mesh>
@@ -897,10 +892,10 @@ function HeroScene() {
             }}
           >
             <meshStandardMaterial
-              color={index === 0 ? "#e5d8c7" : "#9fe9c8"}
+              color={index === 0 ? "#E5D8C7" : "#E6ECEA"}
               metalness={0.38}
               roughness={0.18}
-              emissive={index === 0 ? "#e5d8c7" : "#9fe9c8"}
+              emissive={index === 0 ? "#E5D8C7" : "#E6ECEA"}
               emissiveIntensity={0.3}
               transparent
               opacity={0.92}
@@ -917,7 +912,7 @@ function HeroScene() {
             }}
           >
             <meshBasicMaterial
-              color={index === 0 ? "#9fe9c8" : "#d7f6e9"}
+              color={index === 0 ? "#E6ECEA" : "#E6ECEA"}
               transparent
               opacity={0.28}
             />
@@ -930,7 +925,7 @@ function HeroScene() {
             <mesh key={t} position={[point.x, point.y + 0.02, point.z]} rotation={[-Math.PI / 2, 0, 0]}>
               <torusGeometry args={[0.38, 0.025, 12, 60]} />
               <meshBasicMaterial
-                color={index % 2 === 0 ? "#7de6bc" : "#e5d8c7"}
+                color={index % 2 === 0 ? "#255849" : "#E5D8C7"}
                 transparent
                 opacity={0.48}
               />
@@ -1031,8 +1026,8 @@ function HeroScene() {
               bodyRef={(element) => {
                 packageBodyRefs.current[index] = element;
               }}
-              bodyColor={index % 2 === 0 ? "#efe7da" : "#e6ecea"}
-              emissiveColor="#76edbb"
+              bodyColor={index % 2 === 0 ? "#EFE7DA" : "#E6ECEA"}
+              emissiveColor="#255849"
               emissiveIntensity={0.42}
             />
           </group>
@@ -1047,10 +1042,10 @@ function HeroScene() {
           >
             <DeliveryBus
               scale={0.84}
-              bodyColor="#dfe7e1"
-              emissiveColor="#efe7da"
+              bodyColor="#E6ECEA"
+              emissiveColor="#EFE7DA"
               emissiveIntensity={0.24}
-              windowColor="#f8fff9"
+              windowColor="#FFFFFF"
             />
           </group>
         ))}
@@ -1075,7 +1070,7 @@ function HeroScene() {
             }}
           >
             <sphereGeometry args={[0.2, 24, 24]} />
-            <meshBasicMaterial color="#9bf0c9" transparent opacity={0.4} />
+            <meshBasicMaterial color="#E6ECEA" transparent opacity={0.4} />
           </mesh>
         ))}
       </group>
@@ -1096,10 +1091,9 @@ function HeroSceneFallback() {
   ];
 
   return (
-    <div className="relative h-full w-full overflow-hidden rounded-[28px] bg-[radial-gradient(circle_at_18%_22%,rgba(229,216,199,0.18),transparent_22%),radial-gradient(circle_at_82%_18%,rgba(31,92,74,0.42),transparent_24%),linear-gradient(180deg,#041612_0%,#09201a_100%)]">
-      <div className="absolute inset-0 opacity-35 [background-image:linear-gradient(rgba(255,255,255,0.04)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.04)_1px,transparent_1px)] [background-size:52px_52px]" />
-      <div className="absolute left-[12%] right-[10%] top-1/2 h-px -translate-y-1/2 bg-gradient-to-r from-[#7fe5be]/20 via-[#e5d8c7] to-[#7fe5be]/20" />
-      <div className="absolute left-[12%] right-[10%] top-1/2 h-3 -translate-y-1/2 rounded-full bg-[linear-gradient(90deg,rgba(127,229,190,0.12),rgba(229,216,199,0.38),rgba(127,229,190,0.12))] blur-md" />
+    <div className="relative h-full w-full overflow-hidden rounded-[28px] bg-[#1F5C4A]">
+      <div className="absolute left-[12%] right-[10%] top-1/2 h-px -translate-y-1/2 bg-gradient-to-r from-[#255849]/20 via-[#E5D8C7] to-[#255849]/20" />
+      <div className="absolute left-[12%] right-[10%] top-1/2 h-3 -translate-y-1/2 rounded-full bg-[linear-gradient(90deg,rgba(31,92,74,0.18),rgba(229,216,199,0.38),rgba(31,92,74,0.18))] blur-md" />
 
       {nodes.map((node, index) => (
         <motion.div
@@ -1109,9 +1103,9 @@ function HeroSceneFallback() {
           className="absolute top-1/2 z-10 -translate-x-1/2 -translate-y-1/2"
           style={{ left: node.left }}
         >
-          <div className="absolute inset-0 rounded-full bg-[#7fe5be]/20 blur-2xl" />
+          <div className="absolute inset-0 rounded-full bg-[#255849]/20 blur-2xl" />
           <div className="relative flex h-22 w-22 items-center justify-center rounded-full border border-white/12 bg-white/[0.06] backdrop-blur-xl">
-            <div className="h-11 w-11 rounded-[18px] bg-[linear-gradient(180deg,#e6ecea_0%,#255849_100%)] shadow-[0_0_30px_rgba(127,229,190,0.25)]" />
+            <div className="h-11 w-11 rounded-[18px] bg-[linear-gradient(180deg,#E6ECEA_0%,#255849_100%)] shadow-[0_0_30px_rgba(229,216,199,0.25)]" />
           </div>
           <div className="mt-4 text-center text-xs font-semibold uppercase tracking-[0.24em] text-white/72">
             {node.label}
@@ -1122,7 +1116,7 @@ function HeroSceneFallback() {
       {packages.map((item) => (
         <motion.div
           key={item}
-          className="absolute top-1/2 z-20 h-4 w-6 -translate-y-1/2 rounded-[6px] border border-white/10 bg-[#efe7da] shadow-[0_0_24px_rgba(229,216,199,0.4)]"
+          className="absolute top-1/2 z-20 h-4 w-6 -translate-y-1/2 rounded-[6px] border border-white/10 bg-[#EFE7DA] shadow-[0_0_24px_rgba(229,216,199,0.4)]"
           style={{ left: "14%" }}
           animate={{ left: ["14%", "80%"], y: [0, -8, 0] }}
           transition={{
@@ -1134,7 +1128,7 @@ function HeroSceneFallback() {
         />
       ))}
 
-      <div className="absolute inset-x-6 bottom-6 rounded-[22px] border border-amber-50/10 bg-black/20 px-4 py-3 text-sm text-white/64 backdrop-blur-xl">
+      <div className="absolute inset-x-6 bottom-6 rounded-[22px] border border-[#E5D8C7]/30 bg-[#255849]/35 px-4 py-3 text-sm text-white/80 backdrop-blur-xl">
         WebGL is unavailable, showing the fallback motion preview.
       </div>
     </div>
@@ -1143,30 +1137,30 @@ function HeroSceneFallback() {
 
 export default function Hero3DScene() {
   return (
-    <section id="top" className="relative pt-8 sm:pt-10">
+    <section id="top" className="relative pt-0">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="section-shell hero-mesh min-h-[88vh] rounded-[34px] border border-[#255849]/12 bg-white/68">
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_12%_14%,rgba(229,216,199,0.44),transparent_24%),radial-gradient(circle_at_88%_12%,rgba(31,92,74,0.16),transparent_22%),linear-gradient(180deg,rgba(255,255,255,0.34),rgba(255,255,255,0))]" />
+        <div className="section-shell min-h-[calc(100vh+56px)] rounded-[34px] border border-[#E5D8C7]/80 bg-[#EFEAE1] shadow-[0_30px_100px_rgba(37,88,73,0.14)] lg:h-[calc(100vh+56px)]">
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_28%_18%,rgba(255,255,255,0.74),transparent_28%),radial-gradient(circle_at_86%_12%,rgba(230,236,234,0.82),transparent_24%),linear-gradient(180deg,#EFEAE1_0%,#EFE7DA_100%)]" />
 
-          <div className="relative z-10 grid min-h-[88vh] grid-cols-1 gap-10 px-6 pb-8 pt-10 sm:px-8 lg:grid-cols-[1.08fr_0.92fr] lg:px-12 lg:pb-12 lg:pt-14">
+          <div className="relative z-10 grid min-h-[calc(100vh+56px)] grid-cols-1 gap-6 px-6 py-7 sm:px-8 lg:h-full lg:grid-cols-[1.04fr_0.96fr] lg:px-10 lg:py-8">
             <div className="flex flex-col justify-between">
-              <div className="max-w-2xl pt-6 lg:pt-10">
-                <p className="section-label mb-5">
+              <div className="max-w-2xl pt-2 lg:pt-4">
+                <p className="section-label mb-4">
                   Cinematic Supply Intelligence
                 </p>
 
-                <h1 className="font-display text-[2.8rem] leading-[0.95] tracking-[-0.04em] text-[#25483c] sm:text-[4rem] lg:text-[5.4rem]">
+                <h1 className="font-display text-[2.55rem] leading-[0.95] tracking-[-0.04em] text-[#1F5C4A] sm:text-[3.6rem] lg:text-[4.65rem]">
                   Move every shipment through a{" "}
-                  <span className="text-gradient">living supply chain</span>.
+                  <span className="text-[#255849]">living supply chain</span>.
                 </h1>
 
-                <p className="mt-6 max-w-xl text-base leading-7 text-[#4c6058] sm:text-lg">
+                <p className="mt-5 max-w-xl text-base leading-7 text-[#255849] lg:text-[1.02rem]">
                   Nasou Hive connects industry, retailers, and customers inside one luminous
                   operating layer so inventory, route health, and order promise stay visible in
                   motion.
                 </p>
 
-                <div className="mt-8 flex flex-col gap-4 sm:flex-row">
+                <div className="mt-7 flex flex-col gap-3 sm:flex-row">
                   <motion.div
                     whileHover={{ scale: 1.02, y: -2 }}
                     whileTap={{ scale: 0.98 }}
@@ -1174,7 +1168,7 @@ export default function Hero3DScene() {
                   >
                     <Link
                       to="/app/auth"
-                      className="button-primary inline-flex items-center justify-center rounded-full px-6 py-3.5 text-sm font-semibold transition"
+                      className="inline-flex items-center justify-center rounded-full border border-[#FFFFFF] bg-[#E5D8C7] px-6 py-3.5 text-sm font-semibold text-[#1F5C4A] shadow-[0_16px_36px_rgba(229,216,199,0.22)] transition hover:bg-[#FFFFFF]"
                     >
                       Get Started
                     </Link>
@@ -1183,14 +1177,14 @@ export default function Hero3DScene() {
                     whileHover={{ scale: 1.02, y: -2 }}
                     whileTap={{ scale: 0.98 }}
                     href="#story"
-                    className="glass-panel inline-flex items-center justify-center rounded-full px-6 py-3.5 text-sm font-semibold text-[#25483c]"
+                    className="inline-flex items-center justify-center rounded-full border border-[#E5D8C7] bg-[#FFFFFF]/80 px-6 py-3.5 text-sm font-semibold text-[#1F5C4A] shadow-[0_16px_36px_rgba(37,88,73,0.12)] transition hover:bg-[#E6ECEA]"
                   >
                     Explore the motion system
                   </motion.a>
                 </div>
               </div>
 
-              <div className="grid max-w-2xl grid-cols-1 gap-4 pt-6 sm:grid-cols-3">
+              <div className="grid max-w-2xl grid-cols-1 gap-3 pt-5 sm:grid-cols-3">
                 {[
                   ["98.2%", "Forecast-to-fill accuracy"],
                   ["27%", "Fewer reactive escalations"],
@@ -1198,18 +1192,18 @@ export default function Hero3DScene() {
                 ].map(([value, label]) => (
                   <div
                     key={label}
-                    className="glass-panel rounded-[24px] px-5 py-5 text-left backdrop-blur-2xl"
+                    className="rounded-[24px] border border-[#E5D8C7] bg-[#FFFFFF]/80 px-4 py-4 text-left shadow-[0_18px_40px_rgba(37,88,73,0.1)] backdrop-blur-2xl"
                   >
-                    <div className="font-display text-2xl text-[#25483c]">{value}</div>
-                    <div className="mt-2 text-sm leading-6 text-[#5b6d65]">{label}</div>
+                    <div className="font-display text-xl text-[#1F5C4A] lg:text-2xl">{value}</div>
+                    <div className="mt-2 text-sm leading-6 text-[#255849]">{label}</div>
                   </div>
                 ))}
               </div>
             </div>
 
-            <div className="relative h-[460px] sm:h-[680px] lg:h-[820px] xl:h-[900px]">
-              <div className="absolute inset-0 sm:bottom-[116px] lg:bottom-[124px]">
-                <div className="absolute inset-0 rounded-[28px] border border-[#255849]/12 bg-[linear-gradient(180deg,rgba(255,255,255,0.56),rgba(239,234,225,0.34))] backdrop-blur-sm" />
+            <div className="relative h-[520px] sm:h-[680px] lg:h-full">
+              <div className="absolute inset-0 sm:bottom-[72px] lg:bottom-[84px]">
+                <div className="absolute inset-0 rounded-[28px] border border-[#1F5C4A]/20 bg-[#1F5C4A] shadow-[0_30px_80px_rgba(31,92,74,0.22)]" />
                 <SceneCanvas
                   fallback={<HeroSceneFallback />}
                   className="!h-full !w-full"
@@ -1223,7 +1217,7 @@ export default function Hero3DScene() {
                 </SceneCanvas>
               </div>
 
-              <div className="pointer-events-none absolute inset-x-4 bottom-3 z-20 grid gap-3 sm:inset-x-5 sm:bottom-5 sm:grid-cols-3">
+              <div className="pointer-events-none absolute inset-x-4 bottom-3 z-20 grid gap-3 sm:inset-x-5 sm:bottom-4 sm:grid-cols-3">
                 {[
                   ["Industry", "Supplier pulse, manufacturing readiness"],
                   ["Retailer", "Shelf velocity, replenishment timing"],
@@ -1234,13 +1228,13 @@ export default function Hero3DScene() {
                     initial={{ opacity: 0, y: 18 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.65 + index * 0.08, duration: 0.7 }}
-                    className="glass-panel rounded-[22px] px-4 py-3.5 text-left"
+                    className="rounded-[22px] border border-[#E5D8C7] bg-[#FFFFFF]/86 px-4 py-3 text-left shadow-[0_16px_36px_rgba(37,88,73,0.12)] backdrop-blur-xl"
                   >
                     <div className="mb-1.5 flex items-center gap-2">
                       <span className="inline-flex h-2.5 w-2.5 rounded-full bg-[#255849]" />
-                      <span className="text-sm font-semibold text-[#25483c]">{label}</span>
+                      <span className="text-sm font-semibold text-[#1F5C4A]">{label}</span>
                     </div>
-                    <p className="text-xs leading-5 text-[#5b6d65]">{copy}</p>
+                    <p className="text-xs leading-5 text-[#255849]">{copy}</p>
                   </motion.div>
                 ))}
               </div>
@@ -1251,3 +1245,4 @@ export default function Hero3DScene() {
     </section>
   );
 }
+

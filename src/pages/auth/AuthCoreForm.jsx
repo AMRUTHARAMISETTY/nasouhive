@@ -8,7 +8,7 @@ export default function AuthCoreForm({ state, compact = false, dark = false, tab
   const { isLogin, setIsLogin, role, setRole, formData, onChange, submit, registerFields } = state;
 
   const inputClass = dark
-    ? 'w-full p-3 rounded-xl bg-black/40 border border-primary/30 text-white placeholder:text-gray-400 outline-none focus:ring-2 focus:ring-primary/60'
+    ? 'w-full p-3 rounded-xl bg-[#255849]/40 border border-primary/30 text-white placeholder:text-[#E6ECEA]/70 outline-none focus:ring-2 focus:ring-primary/60'
     : baseInput;
 
   return (

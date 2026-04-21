@@ -42,32 +42,32 @@ export default function NasuoHiveSvgAuth() {
           <rect x="680" y="140" width="140" height="44" rx="22" fill="#1F5C4A" />
           <text x="750" y="168" textAnchor="middle" fill="#FFFFFF" fontSize="16" fontWeight="bold">Login</text>
           <rect x="830" y="140" width="140" height="44" rx="22" fill="#EFEAE1" />
-          <text x="900" y="168" textAnchor="middle" fill="#000000" fontSize="16">Sign Up</text>
+          <text x="900" y="168" textAnchor="middle" fill="#1F5C4A" fontSize="16">Sign Up</text>
 
           <rect x="680" y="210" width="110" height="36" rx="18" fill="#255849" />
           <text x="735" y="233" textAnchor="middle" fill="#FFFFFF" fontSize="14">Manufacturer</text>
           <rect x="800" y="210" width="110" height="36" rx="18" fill="#EFEAE1" />
-          <text x="855" y="233" textAnchor="middle" fill="#000" fontSize="14">Retailer</text>
+          <text x="855" y="233" textAnchor="middle" fill="#1F5C4A" fontSize="14">Retailer</text>
           <rect x="920" y="210" width="110" height="36" rx="18" fill="#EFEAE1" />
-          <text x="975" y="233" textAnchor="middle" fill="#000" fontSize="14">Customer</text>
+          <text x="975" y="233" textAnchor="middle" fill="#1F5C4A" fontSize="14">Customer</text>
 
           <rect x="680" y="280" width="390" height="44" rx="12" fill="#FFFFFF" stroke="#E5D8C7" />
-          <text x="700" y="307" fill="#888" fontSize="14">Email</text>
+          <text x="700" y="307" fill="#255849" fontSize="14">Email</text>
 
           <rect x="680" y="340" width="390" height="44" rx="12" fill="#FFFFFF" stroke="#E5D8C7" />
-          <text x="700" y="367" fill="#888" fontSize="14">Password</text>
+          <text x="700" y="367" fill="#255849" fontSize="14">Password</text>
 
           <rect x="680" y="400" width="390" height="44" rx="12" fill="#FFFFFF" stroke="#E5D8C7" />
-          <text x="700" y="427" fill="#888" fontSize="14">Confirm Password</text>
+          <text x="700" y="427" fill="#255849" fontSize="14">Confirm Password</text>
 
           <rect x="680" y="460" width="390" height="44" rx="12" fill="#FFFFFF" stroke="#E5D8C7" />
-          <text x="700" y="487" fill="#888" fontSize="14">Company Name</text>
+          <text x="700" y="487" fill="#255849" fontSize="14">Company Name</text>
 
           <rect x="680" y="520" width="390" height="44" rx="12" fill="#FFFFFF" stroke="#E5D8C7" />
-          <text x="700" y="547" fill="#888" fontSize="14">GST Number</text>
+          <text x="700" y="547" fill="#255849" fontSize="14">GST Number</text>
 
           <rect x="680" y="580" width="390" height="44" rx="12" fill="#FFFFFF" stroke="#E5D8C7" />
-          <text x="700" y="607" fill="#888" fontSize="14">Phone</text>
+          <text x="700" y="607" fill="#255849" fontSize="14">Phone</text>
 
           <rect x="680" y="650" width="390" height="50" rx="25" fill="#1F5C4A" />
           <text x="875" y="680" textAnchor="middle" fill="#FFFFFF" fontSize="18" fontWeight="bold">Create Account</text>
@@ -76,3 +76,4 @@ export default function NasuoHiveSvgAuth() {
     </div>
   );
 }
+

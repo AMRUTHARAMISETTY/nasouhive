@@ -7,7 +7,6 @@ import {
   Line,
   PerspectiveCamera,
   Preload,
-  Sparkles,
   Text,
 } from "@react-three/drei";
 import { gsap } from "gsap";
@@ -31,9 +30,9 @@ function StoryScene({ storyState, activeStage }) {
   const ringRefs = useRef([]);
   const stageNodes = useMemo(
     () => [
-      { label: "Industry", position: [-7.7, 0.2, 2.4], color: "#9ce9c9" },
-      { label: "Retailer", position: [-0.1, 0.2, -1.7], color: "#e6ecea" },
-      { label: "Customer", position: [7.6, 0.2, -1.3], color: "#e5d8c7" },
+      { label: "Industry", position: [-7.7, 0.2, 2.4], color: "#E6ECEA" },
+      { label: "Retailer", position: [-0.1, 0.2, -1.7], color: "#E6ECEA" },
+      { label: "Customer", position: [7.6, 0.2, -1.3], color: "#E5D8C7" },
     ],
     [],
   );
@@ -51,8 +50,8 @@ function StoryScene({ storyState, activeStage }) {
     elapsed: 1.2,
     origin: new Vector3(-7.7, 0.2, 2.4),
   });
-  const packageColor = useRef(new Color("#efe7da"));
-  const packageTargetColor = useRef(new Color("#e6ecea"));
+  const packageColor = useRef(new Color("#EFE7DA"));
+  const packageTargetColor = useRef(new Color("#E6ECEA"));
   const previousStageRef = useRef(activeStage);
 
   const curve = useMemo(
@@ -239,27 +238,23 @@ function StoryScene({ storyState, activeStage }) {
 
   return (
     <>
-      <color attach="background" args={["#03120e"]} />
-      <fog attach="fog" args={["#03120e", 10, 22]} />
       <PerspectiveCamera makeDefault position={[-7.2, 2.7, 10.8]} fov={32} />
       <ambientLight intensity={0.44} />
-      <hemisphereLight args={["#ecfff6", "#081813", 0.72]} />
-      <directionalLight intensity={1.4} position={[6, 7, 4]} color="#fff7eb" />
-      <spotLight intensity={2.3} position={[-4, 6, 6]} angle={0.34} penumbra={0.8} color="#82e8bb" />
-      <Sparkles count={72} scale={[16, 8, 14]} size={4} speed={0.28} color="#d7fff0" />
-
+      <hemisphereLight args={["#FFFFFF", "#1F5C4A", 0.72]} />
+      <directionalLight intensity={1.4} position={[6, 7, 4]} color="#FFFFFF" />
+      <spotLight intensity={2.3} position={[-4, 6, 6]} angle={0.34} penumbra={0.8} color="#255849" />
       <group ref={rigRef} position={[0, -0.8, 0]}>
         <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, -0.12, 0]}>
           <circleGeometry args={[10.5, 72]} />
-          <meshStandardMaterial color="#071a15" roughness={0.88} metalness={0.12} />
+          <meshStandardMaterial color="#1F5C4A" roughness={0.88} metalness={0.12} />
         </mesh>
 
         <mesh geometry={tubeGeometry}>
           <meshStandardMaterial
-            color="#0e1d19"
+            color="#1F5C4A"
             metalness={0.48}
             roughness={0.2}
-            emissive="#67eab6"
+            emissive="#255849"
             emissiveIntensity={0.62}
           />
         </mesh>
@@ -283,9 +278,9 @@ function StoryScene({ storyState, activeStage }) {
               </mesh>
               <mesh castShadow>
                 <boxGeometry args={[0.9, 0.7, 0.9]} />
-                <meshStandardMaterial color="#dce7e0" metalness={0.4} roughness={0.25} />
+                <meshStandardMaterial color="#E6ECEA" metalness={0.4} roughness={0.25} />
               </mesh>
-              <Text position={[0, 1.18, 0]} fontSize={0.2} color="#effaf4">
+              <Text position={[0, 1.18, 0]} fontSize={0.2} color="#E6ECEA">
                 {node.label}
               </Text>
             </group>
@@ -294,10 +289,10 @@ function StoryScene({ storyState, activeStage }) {
 
         <mesh ref={stagePulseRef} rotation={[-Math.PI / 2, 0, 0]}>
           <ringGeometry args={[0.7, 0.86, 64]} />
-          <meshBasicMaterial color="#b8ffe0" transparent opacity={0} />
+          <meshBasicMaterial color="#E6ECEA" transparent opacity={0} />
         </mesh>
 
-        <pointLight ref={flashLightRef} color="#b8ffe0" intensity={0} distance={4.2} decay={2.4} />
+        <pointLight ref={flashLightRef} color="#E6ECEA" intensity={0} distance={4.2} decay={2.4} />
 
         {burstDirections.map((_, index) => (
           <mesh
@@ -308,7 +303,7 @@ function StoryScene({ storyState, activeStage }) {
             visible={false}
           >
             <sphereGeometry args={[0.08, 12, 12]} />
-            <meshBasicMaterial color="#d7fff0" transparent opacity={0} />
+            <meshBasicMaterial color="#E6ECEA" transparent opacity={0} />
           </mesh>
         ))}
 
@@ -316,15 +311,15 @@ function StoryScene({ storyState, activeStage }) {
           <DeliveryBus
             scale={0.92}
             bodyRef={packageBodyRef}
-            bodyColor="#efe7da"
-            emissiveColor="#7ae8b8"
+            bodyColor="#EFE7DA"
+            emissiveColor="#255849"
             emissiveIntensity={0.5}
           />
         </group>
 
         <mesh ref={pulseRef}>
           <sphereGeometry args={[0.26, 24, 24]} />
-          <meshBasicMaterial color="#9bf0cb" transparent opacity={0.4} />
+          <meshBasicMaterial color="#E6ECEA" transparent opacity={0.4} />
         </mesh>
       </group>
 
@@ -354,7 +349,7 @@ function FlowParticle({ start, end, speed, offset, highlight }) {
   return (
     <mesh ref={ref}>
       <sphereGeometry args={[highlight ? 0.08 : 0.055, 18, 18]} />
-      <meshBasicMaterial color={highlight ? "#9cf3cb" : "#e5d8c7"} transparent opacity={0.95} />
+      <meshBasicMaterial color={highlight ? "#E6ECEA" : "#E5D8C7"} transparent opacity={0.95} />
     </mesh>
   );
 }
@@ -364,14 +359,14 @@ function NetworkScene({ activeNode, setActiveNode }) {
 
   const nodes = useMemo(
     () => [
-      { id: "industry-a", label: "Industries", position: [-3.6, 1.25, -1.2], tint: "#7fe5be" },
-      { id: "industry-b", label: "Plants", position: [-3.1, -0.65, 1.05], tint: "#7fe5be" },
-      { id: "retail-a", label: "Retail", position: [-0.5, 0.95, 0.15], tint: "#e6ecea" },
-      { id: "retail-b", label: "Stores", position: [0.2, -0.85, 1.25], tint: "#e6ecea" },
-      { id: "retail-c", label: "Hubs", position: [0.55, -0.1, -1.4], tint: "#e6ecea" },
-      { id: "customer-a", label: "Customers", position: [3.1, 1.2, -0.7], tint: "#e5d8c7" },
-      { id: "customer-b", label: "Homes", position: [3.6, -0.5, 1.2], tint: "#e5d8c7" },
-      { id: "customer-c", label: "Routes", position: [2.5, -1.2, -1.4], tint: "#e5d8c7" },
+      { id: "industry-a", label: "Industries", position: [-3.6, 1.25, -1.2], tint: "#255849" },
+      { id: "industry-b", label: "Plants", position: [-3.1, -0.65, 1.05], tint: "#255849" },
+      { id: "retail-a", label: "Retail", position: [-0.5, 0.95, 0.15], tint: "#E6ECEA" },
+      { id: "retail-b", label: "Stores", position: [0.2, -0.85, 1.25], tint: "#E6ECEA" },
+      { id: "retail-c", label: "Hubs", position: [0.55, -0.1, -1.4], tint: "#E6ECEA" },
+      { id: "customer-a", label: "Customers", position: [3.1, 1.2, -0.7], tint: "#E5D8C7" },
+      { id: "customer-b", label: "Homes", position: [3.6, -0.5, 1.2], tint: "#E5D8C7" },
+      { id: "customer-c", label: "Routes", position: [2.5, -1.2, -1.4], tint: "#E5D8C7" },
     ],
     [],
   );
@@ -421,14 +416,10 @@ function NetworkScene({ activeNode, setActiveNode }) {
 
   return (
     <>
-      <color attach="background" args={["#02110d"]} />
-      <fog attach="fog" args={["#02110d", 10, 18]} />
       <PerspectiveCamera makeDefault position={[0, 0.8, 9]} fov={34} />
       <ambientLight intensity={0.45} />
-      <pointLight position={[0, 3.5, 4]} intensity={2.1} color="#daf5e8" />
-      <spotLight position={[-4.5, 5.5, 4]} intensity={2.2} angle={0.38} penumbra={0.9} color="#80e5ba" />
-      <Sparkles count={46} scale={[10, 6, 7]} size={4} speed={0.2} color="#f5fff9" />
-
+      <pointLight position={[0, 3.5, 4]} intensity={2.1} color="#E6ECEA" />
+      <spotLight position={[-4.5, 5.5, 4]} intensity={2.2} angle={0.38} penumbra={0.9} color="#255849" />
       <group ref={groupRef}>
         {connections.map(([fromId, toId], index) => {
           const from = nodeMap[fromId];
@@ -439,7 +430,7 @@ function NetworkScene({ activeNode, setActiveNode }) {
             <group key={`${fromId}-${toId}`}>
               <Line
                 points={[from.vector, to.vector]}
-                color={highlighted ? "#93f1c8" : "#335a4b"}
+                color={highlighted ? "#E6ECEA" : "#1F5C4A"}
                 transparent
                 opacity={highlighted ? 0.95 : 0.45}
                 lineWidth={highlighted ? 1.6 : 1}
@@ -486,7 +477,7 @@ function NetworkScene({ activeNode, setActiveNode }) {
                 <Text
                   position={[0, 0.5, 0]}
                   fontSize={0.18}
-                  color={isActive ? "#ffffff" : "#d4e6dd"}
+                  color={isActive ? "#FFFFFF" : "#E6ECEA"}
                   anchorX="center"
                   anchorY="middle"
                 >
@@ -531,9 +522,9 @@ function StorySceneFallback() {
   ];
 
   return (
-    <div className="relative h-full w-full overflow-hidden bg-[radial-gradient(circle_at_18%_18%,rgba(229,216,199,0.18),transparent_22%),radial-gradient(circle_at_84%_16%,rgba(31,92,74,0.42),transparent_24%),linear-gradient(180deg,#041511_0%,#081d17_100%)]">
+    <div className="relative h-full w-full overflow-hidden bg-[linear-gradient(180deg,#1F5C4A_0%,#255849_58%,#1F5C4A_100%)]">
       <div className="absolute inset-0 opacity-30 [background-image:linear-gradient(rgba(255,255,255,0.04)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.04)_1px,transparent_1px)] [background-size:48px_48px]" />
-      <div className="absolute left-[10%] right-[10%] top-[58%] h-px bg-gradient-to-r from-transparent via-[#e5d8c7] to-transparent" />
+      <div className="absolute left-[10%] right-[10%] top-[58%] h-px bg-gradient-to-r from-transparent via-[#E5D8C7] to-transparent" />
       {cards.map((card, index) => (
         <motion.div
           key={card.label}
@@ -543,7 +534,7 @@ function StorySceneFallback() {
           transition={{ duration: 4 + index * 0.4, repeat: Infinity, ease: "easeInOut" }}
         >
           <div className="flex h-20 w-20 items-center justify-center rounded-full border border-white/10 bg-white/[0.05] backdrop-blur-xl">
-            <div className="h-9 w-9 rounded-xl bg-[linear-gradient(180deg,#e6ecea_0%,#255849_100%)]" />
+            <div className="h-9 w-9 rounded-xl bg-[linear-gradient(180deg,#E6ECEA_0%,#255849_100%)]" />
           </div>
           <div className="mt-3 text-center text-xs uppercase tracking-[0.24em] text-white/70">
             {card.label}
@@ -553,13 +544,13 @@ function StorySceneFallback() {
       {[0, 1, 2].map((item) => (
         <motion.div
           key={item}
-          className="absolute top-[58%] h-4 w-6 -translate-y-1/2 rounded-[6px] bg-[#efe7da] shadow-[0_0_22px_rgba(229,216,199,0.45)]"
+          className="absolute top-[58%] h-4 w-6 -translate-y-1/2 rounded-[6px] bg-[#EFE7DA] shadow-[0_0_22px_rgba(229,216,199,0.45)]"
           style={{ left: "12%" }}
           animate={{ left: ["12%", "80%"], y: [0, -6, 0] }}
           transition={{ duration: 6.2, delay: item * 1.15, repeat: Infinity, ease: "easeInOut" }}
         />
       ))}
-      <div className="absolute inset-x-5 bottom-5 rounded-[20px] border border-white/10 bg-black/20 px-4 py-3 text-sm text-white/62 backdrop-blur-xl">
+      <div className="absolute inset-x-5 bottom-5 rounded-[20px] border border-[#E5D8C7]/30 bg-[#255849]/35 px-4 py-3 text-sm text-white/80 backdrop-blur-xl">
         WebGL is unavailable, showing the fallback flow animation.
       </div>
     </div>
@@ -577,7 +568,7 @@ function NetworkSceneFallback() {
   ];
 
   return (
-    <div className="relative h-full w-full overflow-hidden bg-[radial-gradient(circle_at_20%_20%,rgba(127,229,190,0.16),transparent_20%),radial-gradient(circle_at_80%_18%,rgba(229,216,199,0.16),transparent_22%),linear-gradient(180deg,#03130f_0%,#091f18_100%)]">
+    <div className="relative h-full w-full overflow-hidden bg-[linear-gradient(180deg,#1F5C4A_0%,#255849_58%,#1F5C4A_100%)]">
       {[
         ["18%", "28%", "46%", "35%"],
         ["22%", "70%", "46%", "35%"],
@@ -587,7 +578,7 @@ function NetworkSceneFallback() {
       ].map(([x1, y1, x2, y2], index) => (
         <div
           key={`${x1}-${x2}`}
-          className="absolute h-px origin-left bg-gradient-to-r from-[#2d5a49] via-[#7fe5be] to-transparent opacity-70"
+          className="absolute h-px origin-left bg-gradient-to-r from-[#1F5C4A] via-[#255849] to-transparent opacity-70"
           style={{
             left: x1,
             top: y1,
@@ -599,7 +590,7 @@ function NetworkSceneFallback() {
       {nodes.map((node, index) => (
         <motion.div
           key={`${node.x}-${node.y}`}
-          className="absolute h-4 w-4 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#e6ecea] shadow-[0_0_28px_rgba(127,229,190,0.45)]"
+          className="absolute h-4 w-4 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#E6ECEA] shadow-[0_0_28px_rgba(229,216,199,0.45)]"
           style={{ left: node.x, top: node.y }}
           animate={{ scale: [1, 1.35, 1], opacity: [0.7, 1, 0.7] }}
           transition={{ duration: 2.4 + index * 0.15, repeat: Infinity, ease: "easeInOut" }}
@@ -702,10 +693,10 @@ export default function SupplyChainAnimation() {
         <div className="lg:min-h-screen">
           <div
             ref={sectionShellRef}
-            className="section-shell rounded-[34px] border border-[#255849]/12 bg-[linear-gradient(180deg,rgba(255,255,255,0.82),rgba(247,241,232,0.84))] lg:h-screen"
+            className="section-shell rounded-[34px] border border-[#E5D8C7]/80 bg-[#EFEAE1] shadow-[0_30px_100px_rgba(37,88,73,0.12)] lg:h-screen"
           >
             <div className="grid h-full grid-cols-1 lg:grid-cols-[1.18fr_0.82fr]">
-              <div className="relative h-[360px] sm:h-[460px] lg:h-full">
+              <div className="relative h-[360px] bg-[#1F5C4A] sm:h-[460px] lg:h-full">
                 <SceneCanvas
                   fallback={<StorySceneFallback />}
                   className="!h-full !w-full"
@@ -722,10 +713,10 @@ export default function SupplyChainAnimation() {
               <div className="relative z-10 px-6 py-8 sm:px-10 sm:py-10 lg:flex lg:h-full lg:flex-col lg:justify-center lg:px-12 lg:py-12">
                 <div className="max-w-xl">
                   <p className="section-label mb-5">Scroll Storytelling</p>
-                  <h2 className="font-display text-3xl leading-tight text-[#25483c] sm:text-4xl">
+                  <h2 className="font-display text-3xl leading-tight text-[#1F5C4A] sm:text-4xl">
                     The product journey turns into a camera-led narrative.
                   </h2>
-                  <p className="mt-4 text-base leading-7 text-[#556860]">
+                  <p className="mt-4 text-base leading-7 text-[#255849]">
                     Scroll through the operating path and the scene advances from supplier pulse to
                     replenishment logic to the final customer promise.
                   </p>
@@ -743,8 +734,8 @@ export default function SupplyChainAnimation() {
                         transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
                         className={`rounded-full border px-4 py-2 text-sm transition-colors duration-300 ${
                           activeStage === index
-                            ? "border-[#255849]/18 bg-white/92 text-[#25483c] shadow-[0_0_24px_rgba(37,88,73,0.08)]"
-                            : "border-[#255849]/10 bg-white/60 text-[#5c6f66]"
+                            ? "border-[#255849] bg-[#E6ECEA] text-[#1F5C4A] shadow-[0_12px_28px_rgba(37,88,73,0.12)]"
+                            : "border-[#E5D8C7] bg-[#FFFFFF]/70 text-[#255849]"
                         }`}
                       >
                         <span className="font-medium">0{index + 1}</span>
@@ -753,7 +744,7 @@ export default function SupplyChainAnimation() {
                     ))}
                   </div>
 
-                  <div className="relative min-h-[250px] overflow-hidden rounded-[28px] border border-[#255849]/12 bg-white/76 px-7 py-7 shadow-[inset_0_1px_0_rgba(255,255,255,0.7)]">
+                  <div className="relative min-h-[250px] overflow-hidden rounded-[28px] border border-[#E5D8C7] bg-[#FFFFFF]/78 px-7 py-7 shadow-[0_18px_44px_rgba(37,88,73,0.08)]">
                     <AnimatePresence mode="wait">
                       <motion.div
                         key={storyPanels[activeStage].title}
@@ -763,7 +754,7 @@ export default function SupplyChainAnimation() {
                         transition={{ duration: 0.42, ease: [0.22, 1, 0.36, 1] }}
                         className="absolute inset-0 px-7 py-7"
                       >
-                        <div className="mb-4 flex items-center gap-3 text-sm text-[#667a71]">
+                        <div className="mb-4 flex items-center gap-3 text-sm text-[#255849]">
                           <span className="inline-flex h-8 w-8 items-center justify-center rounded-full border border-[#255849]/12 bg-[#255849] font-semibold text-white">
                             0{activeStage + 1}
                           </span>
@@ -771,10 +762,10 @@ export default function SupplyChainAnimation() {
                             Live stage
                           </span>
                         </div>
-                        <h3 className="font-display text-2xl text-[#25483c]">
+                        <h3 className="font-display text-2xl text-[#1F5C4A]">
                           {storyPanels[activeStage].title}
                         </h3>
-                        <p className="mt-4 max-w-md text-base leading-7 text-[#556860]">
+                        <p className="mt-4 max-w-md text-base leading-7 text-[#255849]">
                           {storyPanels[activeStage].copy}
                         </p>
                       </motion.div>
@@ -792,7 +783,7 @@ export default function SupplyChainAnimation() {
                       transition={{ duration: 0.65, delay: index * 0.08 }}
                       className="story-card rounded-[26px] px-6 py-6"
                     >
-                      <div className="mb-3 flex items-center gap-3 text-sm text-[#667a71]">
+                      <div className="mb-3 flex items-center gap-3 text-sm text-[#255849]">
                         <span className="inline-flex h-8 w-8 items-center justify-center rounded-full border border-[#255849]/12 bg-[#255849] font-semibold text-white">
                           0{index + 1}
                         </span>
@@ -800,8 +791,8 @@ export default function SupplyChainAnimation() {
                           Live stage
                         </span>
                       </div>
-                      <h3 className="font-display text-xl text-[#25483c]">{panel.title}</h3>
-                      <p className="mt-3 text-sm leading-6 text-[#556860]">{panel.copy}</p>
+                      <h3 className="font-display text-xl text-[#1F5C4A]">{panel.title}</h3>
+                      <p className="mt-3 text-sm leading-6 text-[#255849]">{panel.copy}</p>
                     </motion.div>
                   ))}
                 </div>
@@ -812,14 +803,14 @@ export default function SupplyChainAnimation() {
       </section>
 
       <section className="relative z-10 mx-auto mt-20 max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="section-shell rounded-[34px] border border-[#255849]/12 bg-white/72 px-6 py-8 sm:px-8 lg:px-10 lg:py-10">
+        <div className="section-shell rounded-[34px] border border-[#E5D8C7]/80 bg-[#EFEAE1] px-6 py-8 shadow-[0_30px_100px_rgba(37,88,73,0.12)] sm:px-8 lg:px-10 lg:py-10">
           <div className="grid gap-8 lg:grid-cols-[0.8fr_1.2fr] lg:items-center">
             <div className="max-w-xl">
               <p className="section-label mb-5">Interactive Network</p>
-              <h2 className="font-display text-3xl text-[#25483c] sm:text-4xl">
+              <h2 className="font-display text-3xl text-[#1F5C4A] sm:text-4xl">
                 A floating graph of industries, retailers, and customers.
               </h2>
-              <p className="mt-4 text-base leading-7 text-[#556860]">
+              <p className="mt-4 text-base leading-7 text-[#255849]">
                 Hover the network to illuminate the exact relationship path. Data particles move
                 through the graph to suggest lead times, order signal, and route continuity.
               </p>
@@ -831,15 +822,15 @@ export default function SupplyChainAnimation() {
                   ["360°", "network visibility layer"],
                   ["14 ms", "signal propagation"],
                 ].map(([value, label]) => (
-                  <div key={label} className="glass-panel rounded-[22px] px-4 py-4">
-                    <div className="font-display text-2xl text-[#25483c]">{value}</div>
-                    <div className="mt-1 text-sm text-[#5b6d65]">{label}</div>
+                  <div key={label} className="rounded-[22px] border border-[#E5D8C7] bg-[#FFFFFF]/82 px-4 py-4 shadow-[0_14px_34px_rgba(37,88,73,0.08)]">
+                    <div className="font-display text-2xl text-[#1F5C4A]">{value}</div>
+                    <div className="mt-1 text-sm text-[#255849]">{label}</div>
                   </div>
                 ))}
               </div>
             </div>
 
-            <div className="relative h-[460px] sm:h-[560px] overflow-hidden rounded-[28px] border border-[#255849]/12 bg-[linear-gradient(180deg,rgba(255,255,255,0.62),rgba(239,234,225,0.42))]">
+            <div className="relative h-[460px] overflow-hidden rounded-[28px] border border-[#1F5C4A]/20 bg-[#1F5C4A] sm:h-[560px]">
               <SceneCanvas
                 fallback={<NetworkSceneFallback />}
                 className="!h-full !w-full"
@@ -851,7 +842,7 @@ export default function SupplyChainAnimation() {
                 <NetworkScene activeNode={activeNode} setActiveNode={setActiveNode} />
               </SceneCanvas>
 
-              <div className="pointer-events-none absolute left-5 top-5 rounded-full border border-[#255849]/12 bg-white/74 px-4 py-2 text-xs font-semibold uppercase tracking-[0.24em] text-[#255849] backdrop-blur-xl">
+              <div className="pointer-events-none absolute left-5 top-5 rounded-full border border-[#E5D8C7]/50 bg-[#FFFFFF]/12 px-4 py-2 text-xs font-semibold uppercase tracking-[0.24em] text-[#E6ECEA] backdrop-blur-xl">
                 Hover a node to isolate the path
               </div>
             </div>
@@ -861,3 +852,4 @@ export default function SupplyChainAnimation() {
     </>
   );
 }
+

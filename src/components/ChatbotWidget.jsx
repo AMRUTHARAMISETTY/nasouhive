@@ -21,7 +21,7 @@ const ChatbotWidget = () => {
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
         onClick={() => setIsOpen(true)}
-        className="fixed bottom-6 right-6 z-50 rounded-full bg-primary p-4 text-white shadow-2xl"
+        className="fixed bottom-6 right-6 z-50 rounded-full bg-[#1F5C4A] p-4 text-white shadow-2xl"
         aria-label="Open AI assistant"
         title="AI Assistant"
       >

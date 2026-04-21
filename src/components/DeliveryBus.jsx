@@ -1,10 +1,10 @@
 export default function DeliveryBus({
   bodyRef,
   scale = 1,
-  bodyColor = "#efe7da",
-  emissiveColor = "#7ae8b8",
+  bodyColor = "#EFE7DA",
+  emissiveColor = "#255849",
   emissiveIntensity = 0.42,
-  windowColor = "#d8fff1",
+  windowColor = "#E6ECEA",
 }) {
   return (
     <group scale={scale}>
@@ -22,10 +22,10 @@ export default function DeliveryBus({
       <mesh position={[0.1, 0.17, 0]} castShadow>
         <boxGeometry args={[0.34, 0.14, 0.28]} />
         <meshStandardMaterial
-          color="#f5fbf8"
+          color="#FFFFFF"
           metalness={0.38}
           roughness={0.22}
-          emissive="#9ce9c8"
+          emissive="#E6ECEA"
           emissiveIntensity={0.1}
         />
       </mesh>
@@ -55,20 +55,21 @@ export default function DeliveryBus({
       {[-0.22, 0.22].map((x) => (
         <mesh key={`wheel-left-${x}`} rotation={[Math.PI / 2, 0, 0]} position={[x, -0.11, 0.12]} castShadow>
           <cylinderGeometry args={[0.06, 0.06, 0.05, 18]} />
-          <meshStandardMaterial color="#12221c" metalness={0.35} roughness={0.72} />
+          <meshStandardMaterial color="#1F5C4A" metalness={0.35} roughness={0.72} />
         </mesh>
       ))}
       {[-0.22, 0.22].map((x) => (
         <mesh key={`wheel-right-${x}`} rotation={[Math.PI / 2, 0, 0]} position={[x, -0.11, -0.12]} castShadow>
           <cylinderGeometry args={[0.06, 0.06, 0.05, 18]} />
-          <meshStandardMaterial color="#12221c" metalness={0.35} roughness={0.72} />
+          <meshStandardMaterial color="#1F5C4A" metalness={0.35} roughness={0.72} />
         </mesh>
       ))}
 
       <mesh position={[-0.24, 0.04, 0]}>
         <boxGeometry args={[0.06, 0.07, 0.32]} />
-        <meshBasicMaterial color="#84f0c4" />
+        <meshBasicMaterial color="#255849" />
       </mesh>
     </group>
   );
 }
+

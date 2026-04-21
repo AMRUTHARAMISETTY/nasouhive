@@ -1,24 +1,25 @@
 import React, { useMemo, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { NavLink, Outlet, useLocation } from 'react-router-dom';
-import { manufacturerNavItems } from '../../data/manufacturerDashboardData';
-import { cn, Icon } from './ManufacturerUI';
+import { retailerNavItems } from '../../data/retailerPortalData';
+import { cn, RetailerIcon } from './RetailerUI';
 
 const titleMap = {
-  dashboard: 'Manufacturer Dashboard',
-  'raw-materials': 'Raw Materials',
-  planning: 'Production Planning',
-  manufacturing: 'Manufacturing',
+  dashboard: 'Retailer Dashboard',
+  products: 'Products',
   inventory: 'Inventory',
-  quality: 'Quality Control',
-  'supply-chain': 'Supply Chain',
+  suppliers: 'Suppliers',
+  'price-comparison': 'Price Comparison',
   orders: 'Orders',
-  warehouses: 'Warehouses',
+  billing: 'Billing (POS)',
+  customers: 'Customers',
+  payments: 'Payments',
+  offers: 'Offers & Discounts',
   reports: 'Reports & Analytics',
   settings: 'Settings',
 };
 
-function ManufacturerLayout() {
+function RetailerLayout() {
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
   const [language, setLanguage] = useState('EN');
   const [search, setSearch] = useState('');
@@ -26,7 +27,7 @@ function ManufacturerLayout() {
   const location = useLocation();
 
   const sectionKey = useMemo(() => location.pathname.split('/').filter(Boolean).pop() ?? 'dashboard', [location.pathname]);
-  const pageTitle = titleMap[sectionKey] ?? 'Manufacturer Portal';
+  const pageTitle = titleMap[sectionKey] ?? 'Retailer Portal';
 
   const linkClass = ({ isActive }) =>
     cn(
@@ -44,17 +45,17 @@ function ManufacturerLayout() {
             <div className="mb-6 flex items-center justify-between gap-3">
               <div className="flex items-center gap-3">
                 <div className="grid h-11 w-11 place-items-center rounded-2xl border border-[#255849] bg-[#1F5C4A] text-white shadow-[0_14px_34px_rgba(31,92,74,0.3)]">N</div>
-                {!sidebarCollapsed ? <div><p className="font-bold text-[#1F5C4A]">Nasuo Hive</p><p className="text-xs font-semibold text-[#255849]">Manufacturer Portal</p></div> : null}
+                {!sidebarCollapsed ? <div><p className="font-bold text-[#1F5C4A]">Nasuo Hive</p><p className="text-xs font-semibold text-[#255849]">Retailer Portal</p></div> : null}
               </div>
               <button onClick={() => setSidebarCollapsed((prev) => !prev)} className="rounded-xl border border-[#255849] bg-[#1F5C4A] p-2 text-white">
-                <Icon name="chevron" className={cn('h-4 w-4 transition', sidebarCollapsed ? 'rotate-180' : '')} />
+                <RetailerIcon name="chevron" className={cn('h-4 w-4 transition', sidebarCollapsed ? 'rotate-180' : '')} />
               </button>
             </div>
 
             <div className="space-y-1.5">
-              {manufacturerNavItems.map((item) => (
-                <NavLink key={item.key} to={item.key === 'dashboard' ? '/app/manufacturer/dashboard' : `/app/manufacturer/${item.key}`} className={linkClass}>
-                  <Icon name={item.icon} className="h-5 w-5 shrink-0" />
+              {retailerNavItems.map((item) => (
+                <NavLink key={item.key} to={item.key === 'dashboard' ? '/app/retailer/dashboard' : `/app/retailer/${item.key}`} className={linkClass}>
+                  <RetailerIcon name={item.icon} className="h-5 w-5 shrink-0" />
                   {!sidebarCollapsed ? <span>{item.label}</span> : null}
                 </NavLink>
               ))}
@@ -67,8 +68,8 @@ function ManufacturerLayout() {
                 <div className="flex items-center gap-3">
                   <div className="grid h-10 w-10 place-items-center rounded-2xl bg-[#1F5C4A] text-white lg:hidden">N</div>
                   <div className="flex items-center gap-3 rounded-[20px] border border-[#E5D8C7] bg-[#FFFFFF] px-4 py-3">
-                    <Icon name="search" className="h-4 w-4 text-[#255849]" />
-                    <input value={search} onChange={(e) => setSearch(e.target.value)} placeholder="Search production batches, SKUs, or suppliers" className="w-[220px] bg-transparent text-sm text-[#1F5C4A] outline-none placeholder:text-[#255849]/60 md:w-[360px]" />
+                    <RetailerIcon name="search" className="h-4 w-4 text-[#255849]" />
+                    <input value={search} onChange={(e) => setSearch(e.target.value)} placeholder="Search products, suppliers, customers, or invoices" className="w-[220px] bg-transparent text-sm text-[#1F5C4A] outline-none placeholder:text-[#255849]/60 md:w-[360px]" />
                   </div>
                 </div>
                 <div className="flex items-center gap-3 self-end xl:self-auto">
@@ -77,13 +78,14 @@ function ManufacturerLayout() {
                     <option>HI</option>
                     <option>TE</option>
                   </select>
-                  <button className="rounded-2xl border border-[#E5D8C7] bg-[#FFFFFF] p-3 text-[#1F5C4A]"><Icon name="bell" className="h-5 w-5" /></button>
+                  <button className="rounded-2xl border border-[#E5D8C7] bg-[#FFFFFF] p-3 text-[#1F5C4A]"><RetailerIcon name="bell" className="h-5 w-5" /></button>
+                  <button className="rounded-2xl border border-[#E5D8C7] bg-[#FFFFFF] p-3 text-[#1F5C4A]"><RetailerIcon name="cart" className="h-5 w-5" /></button>
                   <div className="relative">
                     <button onClick={() => setShowProfileMenu((prev) => !prev)} className="flex items-center gap-3 rounded-2xl border border-[#E5D8C7] bg-[#FFFFFF] px-3 py-2 text-[#1F5C4A]">
                       <div className="grid h-9 w-9 place-items-center rounded-2xl bg-[#E5D8C7] text-[#1F5C4A]">AR</div>
                       <div className="hidden text-left sm:block">
                         <p className="text-sm font-semibold">A. Rami</p>
-                        <p className="text-xs text-[#255849]">Plant Admin</p>
+                        <p className="text-xs text-[#255849]">Retail Ops Lead</p>
                       </div>
                     </button>
                     <AnimatePresence>
@@ -101,7 +103,7 @@ function ManufacturerLayout() {
             <main className="flex-1 px-4 py-6 sm:px-6">
               <div className="mx-auto max-w-[1600px] space-y-6">
                 <div>
-                  <p className="text-xs uppercase tracking-[0.28em] text-[#255849]">Manufacturer Portal</p>
+                  <p className="text-xs uppercase tracking-[0.28em] text-[#255849]">Retailer Commerce Hub</p>
                   <h1 className="mt-2 text-3xl font-semibold tracking-[-0.04em] text-[#1F5C4A] sm:text-4xl">{pageTitle}</h1>
                 </div>
                 <Outlet />
@@ -114,4 +116,4 @@ function ManufacturerLayout() {
   );
 }
 
-export default ManufacturerLayout;
+export default RetailerLayout;

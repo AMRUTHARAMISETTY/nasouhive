@@ -10,7 +10,7 @@ const CartDrawer = ({ isOpen, onClose }) => {
     <AnimatePresence>
       {isOpen && (
         <>
-          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 0.5 }} exit={{ opacity: 0 }} onClick={onClose} className="fixed inset-0 bg-black z-40" />
+          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 0.55 }} exit={{ opacity: 0 }} onClick={onClose} className="fixed inset-0 z-40 bg-[#255849]" />
           <motion.div
             initial={{ x: '100%' }}
             animate={{ x: 0 }}

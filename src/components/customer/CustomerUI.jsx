@@ -26,32 +26,32 @@ export function CustomerIcon({ name, className = 'h-5 w-5' }) {
 }
 
 export function PortalCard({ children, className = '' }) {
-  return <div className={cn('rounded-[20px] border border-white/60 bg-white/72 p-5 shadow-[0_18px_40px_rgba(24,53,44,0.08)] backdrop-blur-xl', className)}>{children}</div>;
+  return <div className={cn('rounded-[20px] border border-[#E5D8C7] bg-[#FFFFFF]/86 p-5 shadow-[0_18px_40px_rgba(37,88,73,0.08)] backdrop-blur-xl', className)}>{children}</div>;
 }
 
 export function ProductTile({ product, onOpen, onAdd }) {
   return (
-    <motion.div whileHover={{ y: -4 }} className="rounded-[22px] border border-white/60 bg-white/78 p-4 shadow-[0_16px_34px_rgba(24,53,44,0.08)]">
-      <div className="relative overflow-hidden rounded-[18px] bg-[linear-gradient(135deg,#f0ece4,#ffffff)] p-4">
-        <div className="absolute right-3 top-3 rounded-full bg-[#1f5c4a] px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.18em] text-white">{product.badge || product.category}</div>
+    <motion.div whileHover={{ y: -4 }} className="rounded-[22px] border border-[#E5D8C7] bg-[#FFFFFF] p-4 shadow-[0_16px_34px_rgba(37,88,73,0.08)]">
+      <div className="relative overflow-hidden rounded-[18px] bg-[linear-gradient(135deg,#EFE7DA,#FFFFFF)] p-4">
+        <div className="absolute right-3 top-3 rounded-full bg-[#1F5C4A] px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.18em] text-white">{product.badge || product.category}</div>
         <div className="grid h-36 place-items-center rounded-[16px]" style={{ background: `radial-gradient(circle at top, ${product.accent}26, transparent 52%)` }}>
-          <div className="h-20 w-20 rounded-[24px] border border-white/60 bg-white/70 shadow-[0_16px_30px_rgba(24,53,44,0.08)]" />
+          <div className="h-20 w-20 rounded-[24px] border border-[#E5D8C7] bg-[#FFFFFF]/80 shadow-[0_16px_30px_rgba(37,88,73,0.08)]" />
         </div>
       </div>
       <div className="mt-4">
-        <p className="text-sm text-[#698079]">{product.category}</p>
-        <button onClick={() => onOpen(product)} className="mt-1 text-left text-lg font-semibold tracking-[-0.03em] text-[#18352c]">{product.name}</button>
-        <div className="mt-2 flex items-center gap-2 text-sm text-[#587067]">
-          <CustomerIcon name="star" className="h-4 w-4 fill-[#d0a86e] text-[#d0a86e]" />
+        <p className="text-sm text-[#255849]">{product.category}</p>
+        <button onClick={() => onOpen(product)} className="mt-1 text-left text-lg font-semibold tracking-[-0.03em] text-[#1F5C4A]">{product.name}</button>
+        <div className="mt-2 flex items-center gap-2 text-sm text-[#255849]">
+          <CustomerIcon name="star" className="h-4 w-4 fill-[#E5D8C7] text-[#E5D8C7]" />
           <span>{product.rating}</span>
           <span>({product.reviews})</span>
         </div>
         <div className="mt-4 flex items-center justify-between gap-3">
           <div>
-            <p className="text-lg font-semibold text-[#18352c]">${product.price}</p>
-            {product.originalPrice ? <p className="text-sm text-[#81938d] line-through">${product.originalPrice}</p> : null}
+            <p className="text-lg font-semibold text-[#1F5C4A]">${product.price}</p>
+            {product.originalPrice ? <p className="text-sm text-[#255849]/70 line-through">${product.originalPrice}</p> : null}
           </div>
-          <button onClick={() => onAdd(product)} className="rounded-full bg-[#1f5c4a] px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-[#244f42]">Add to Cart</button>
+          <button onClick={() => onAdd(product)} className="rounded-full bg-[#1F5C4A] px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-[#1F5C4A]">Add to Cart</button>
         </div>
       </div>
     </motion.div>
@@ -60,11 +60,12 @@ export function ProductTile({ product, onOpen, onAdd }) {
 
 export function EmptyState({ title, detail }) {
   return (
-    <div className="grid min-h-[220px] place-items-center rounded-[20px] border border-dashed border-[#d8cdbd] bg-white/55 text-center">
+    <div className="grid min-h-[220px] place-items-center rounded-[20px] border border-dashed border-[#E5D8C7] bg-[#FFFFFF]/55 text-center">
       <div>
-        <p className="text-lg font-semibold text-[#18352c]">{title}</p>
-        <p className="mt-2 max-w-sm text-sm text-[#6e837a]">{detail}</p>
+        <p className="text-lg font-semibold text-[#1F5C4A]">{title}</p>
+        <p className="mt-2 max-w-sm text-sm text-[#255849]">{detail}</p>
       </div>
     </div>
   );
 }
+

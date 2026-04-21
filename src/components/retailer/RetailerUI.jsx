@@ -29,7 +29,7 @@ export function RetailerIcon({ name, className = 'h-5 w-5' }) {
 }
 
 export function RetailerCard({ children, className = '', dark = false }) {
-  return <div className={cn('rounded-[20px] border p-5 shadow-[0_18px_40px_rgba(15,23,42,0.06)] backdrop-blur-xl', dark ? 'border-white/10 bg-[#121a27]/88 text-white' : 'border-[#e6ddd0] bg-white/86 text-[#18352c]', className)}>{children}</div>;
+  return <div className={cn('rounded-[20px] border p-5 shadow-[0_18px_40px_rgba(37,88,73,0.08)] backdrop-blur-xl', dark ? 'border-[#FFFFFF]/30 bg-[#1F5C4A] text-white' : 'border-[#E5D8C7] bg-[#FFFFFF]/86 text-[#1F5C4A]', className)}>{children}</div>;
 }
 
 export function RetailerBadge({ value, dark = false }) {
@@ -56,7 +56,7 @@ export function RetailerBadge({ value, dark = false }) {
 }
 
 export function RetailerAction({ children, dark = false }) {
-  return <button className={cn('rounded-2xl px-4 py-3 text-sm font-semibold transition hover:-translate-y-0.5', dark ? 'bg-white/10 text-white hover:bg-white/14' : 'bg-[#eff4f1] text-[#1f5c4a] hover:bg-[#e5efe9]')}>{children}</button>;
+  return <button className={cn('rounded-2xl px-4 py-3 text-sm font-semibold transition hover:-translate-y-0.5', dark ? 'bg-[#FFFFFF]/10 text-white hover:bg-[#FFFFFF]/14' : 'bg-[#1F5C4A] text-[#FFFFFF] hover:bg-[#255849]')}>{children}</button>;
 }
 
 export function RetailerStat({ item, dark = false }) {
@@ -65,13 +65,13 @@ export function RetailerStat({ item, dark = false }) {
     <RetailerCard dark={dark} className="relative overflow-hidden">
       <div className={cn('absolute inset-0 bg-gradient-to-br', toneClass)} />
       <div className="relative">
-        <p className={cn('text-sm', dark ? 'text-slate-300' : 'text-[#6a7d75]')}>{item.label}</p>
+        <p className={cn('text-sm', dark ? 'text-[#E6ECEA]' : 'text-[#255849]')}>{item.label}</p>
         <div className="mt-4 flex items-end justify-between gap-4">
           <div>
-            <p className={cn('text-3xl font-semibold tracking-[-0.04em]', dark ? 'text-white' : 'text-[#143126]')}>{item.value}</p>
-            <p className={cn('mt-2 text-xs', dark ? 'text-slate-400' : 'text-[#70817a]')}>{item.detail}</p>
+            <p className={cn('text-3xl font-semibold tracking-[-0.04em]', dark ? 'text-white' : 'text-[#1F5C4A]')}>{item.value}</p>
+            <p className={cn('mt-2 text-xs', dark ? 'text-[#E6ECEA]/80' : 'text-[#255849]')}>{item.detail}</p>
           </div>
-          <span className={cn('rounded-full px-3 py-1 text-xs font-semibold', dark ? 'bg-white/10 text-white' : 'bg-[#f3eee8] text-[#255849]')}>{item.delta}</span>
+          <span className={cn('rounded-full px-3 py-1 text-xs font-semibold', dark ? 'bg-[#FFFFFF]/10 text-white' : 'bg-[#EFEAE1] text-[#1F5C4A]')}>{item.delta}</span>
         </div>
       </div>
     </RetailerCard>
@@ -82,8 +82,8 @@ export function RetailerSectionHeader({ title, description, action, dark = false
   return (
     <div className="mb-4 flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
       <div>
-        <h2 className={cn('text-xl font-semibold tracking-[-0.03em]', dark ? 'text-white' : 'text-[#18352c]')}>{title}</h2>
-        {description ? <p className={cn('mt-1 text-sm', dark ? 'text-slate-300' : 'text-[#61756d]')}>{description}</p> : null}
+        <h2 className={cn('text-xl font-semibold tracking-[-0.03em]', dark ? 'text-white' : 'text-[#1F5C4A]')}>{title}</h2>
+        {description ? <p className={cn('mt-1 text-sm', dark ? 'text-[#E6ECEA]' : 'text-[#255849]')}>{description}</p> : null}
       </div>
       {action}
     </div>
@@ -91,17 +91,17 @@ export function RetailerSectionHeader({ title, description, action, dark = false
 }
 
 export function RetailerSkeleton({ dark = false, className = '' }) {
-  return <div className={cn('animate-pulse rounded-2xl', dark ? 'bg-white/8' : 'bg-[#ece4d9]', className)} />;
+  return <div className={cn('animate-pulse rounded-2xl', dark ? 'bg-[#FFFFFF]/8' : 'bg-[#EFE7DA]', className)} />;
 }
 
 export function ComparisonCard({ item, dark = false }) {
   return (
-    <motion.div whileHover={{ y: -2 }} className={cn('rounded-[18px] border p-4', dark ? 'border-white/10 bg-white/5' : 'border-[#e7ddcf] bg-[#fcfaf6]')}>
+    <motion.div whileHover={{ y: -2 }} className={cn('rounded-[18px] border p-4', dark ? 'border-white/10 bg-white/5' : 'border-[#E5D8C7] bg-[#FFFFFF]')}>
       <div className="flex items-center justify-between gap-3"><p className="font-semibold">{item.manufacturer}</p><RetailerBadge dark={dark} value={item.badge} /></div>
       <div className="mt-4 grid gap-3 text-sm md:grid-cols-3">
-        <div><p className={cn(dark ? 'text-slate-400' : 'text-[#70817b]')}>Price</p><p className="mt-1 font-semibold">{item.price}</p></div>
-        <div><p className={cn(dark ? 'text-slate-400' : 'text-[#70817b]')}>Delivery</p><p className="mt-1 font-semibold">{item.delivery}</p></div>
-        <div><p className={cn(dark ? 'text-slate-400' : 'text-[#70817b]')}>Rating</p><p className="mt-1 font-semibold">{item.rating}</p></div>
+        <div><p className={cn(dark ? 'text-slate-400' : 'text-[#255849]')}>Price</p><p className="mt-1 font-semibold">{item.price}</p></div>
+        <div><p className={cn(dark ? 'text-slate-400' : 'text-[#255849]')}>Delivery</p><p className="mt-1 font-semibold">{item.delivery}</p></div>
+        <div><p className={cn(dark ? 'text-slate-400' : 'text-[#255849]')}>Rating</p><p className="mt-1 font-semibold">{item.rating}</p></div>
       </div>
       <button className="mt-4 rounded-full bg-[#1f5c4a] px-4 py-2.5 text-sm font-semibold text-white">Buy Now</button>
     </motion.div>

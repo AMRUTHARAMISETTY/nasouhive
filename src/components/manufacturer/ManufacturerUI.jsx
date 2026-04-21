@@ -29,7 +29,7 @@ export function Icon({ name, className = 'h-5 w-5' }) {
 
 export function ThemeCard({ children, className = '', dark = false }) {
   return (
-    <div className={cn('rounded-[20px] border p-5 shadow-[0_18px_40px_rgba(15,23,42,0.06)] backdrop-blur-xl', dark ? 'border-white/10 bg-[#111926]/88 text-white' : 'border-[#e6ddd0] bg-white/86 text-[#18352c]', className)}>
+    <div className={cn('rounded-[20px] border p-5 shadow-[0_18px_40px_rgba(37,88,73,0.08)] backdrop-blur-xl', dark ? 'border-[#FFFFFF]/30 bg-[#1F5C4A] text-white' : 'border-[#E5D8C7] bg-[#FFFFFF]/86 text-[#1F5C4A]', className)}>
       {children}
     </div>
   );
@@ -49,8 +49,8 @@ export function SectionHeader({ title, description, action, dark = false }) {
   return (
     <div className="mb-4 flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
       <div>
-        <h2 className={cn('text-xl font-semibold tracking-[-0.03em]', dark ? 'text-white' : 'text-[#18352c]')}>{title}</h2>
-        {description ? <p className={cn('mt-1 text-sm', dark ? 'text-slate-300' : 'text-[#61756d]')}>{description}</p> : null}
+        <h2 className={cn('text-xl font-semibold tracking-[-0.03em]', dark ? 'text-white' : 'text-[#1F5C4A]')}>{title}</h2>
+        {description ? <p className={cn('mt-1 text-sm', dark ? 'text-[#E6ECEA]' : 'text-[#255849]')}>{description}</p> : null}
       </div>
       {action}
     </div>
@@ -58,7 +58,7 @@ export function SectionHeader({ title, description, action, dark = false }) {
 }
 
 export function ActionButton({ children, dark = false }) {
-  return <button className={cn('rounded-2xl px-4 py-3 text-sm font-semibold transition hover:-translate-y-0.5', dark ? 'bg-white/10 text-white hover:bg-white/14' : 'bg-[#eff4f1] text-[#1f5c4a] hover:bg-[#e5efe9]')}>{children}</button>;
+  return <button className={cn('rounded-2xl px-4 py-3 text-sm font-semibold transition hover:-translate-y-0.5', dark ? 'bg-[#FFFFFF]/10 text-white hover:bg-[#FFFFFF]/14' : 'bg-[#1F5C4A] text-[#FFFFFF] hover:bg-[#255849]')}>{children}</button>;
 }
 
 export function MiniStat({ item, dark = false }) {
@@ -67,13 +67,13 @@ export function MiniStat({ item, dark = false }) {
     <ThemeCard dark={dark} className="relative overflow-hidden">
       <div className={cn('absolute inset-0 bg-gradient-to-br', toneClass)} />
       <div className="relative">
-        <p className={cn('text-sm', dark ? 'text-slate-300' : 'text-[#6a7d75]')}>{item.label}</p>
+        <p className={cn('text-sm', dark ? 'text-[#E6ECEA]' : 'text-[#255849]')}>{item.label}</p>
         <div className="mt-4 flex items-end justify-between gap-4">
           <div>
-            <p className={cn('text-3xl font-semibold tracking-[-0.04em]', dark ? 'text-white' : 'text-[#143126]')}>{item.value}</p>
-            <p className={cn('mt-2 text-xs', dark ? 'text-slate-400' : 'text-[#70817a]')}>{item.detail}</p>
+            <p className={cn('text-3xl font-semibold tracking-[-0.04em]', dark ? 'text-white' : 'text-[#1F5C4A]')}>{item.value}</p>
+            <p className={cn('mt-2 text-xs', dark ? 'text-[#E6ECEA]/80' : 'text-[#255849]')}>{item.detail}</p>
           </div>
-          <span className={cn('rounded-full px-3 py-1 text-xs font-semibold', dark ? 'bg-white/10 text-white' : 'bg-[#f3eee8] text-[#255849]')}>{item.delta}</span>
+          <span className={cn('rounded-full px-3 py-1 text-xs font-semibold', dark ? 'bg-[#FFFFFF]/10 text-white' : 'bg-[#EFEAE1] text-[#1F5C4A]')}>{item.delta}</span>
         </div>
       </div>
     </ThemeCard>
@@ -84,12 +84,12 @@ export function TooltipChip({ label, tip, dark = false }) {
   const [open, setOpen] = useState(false);
   return (
     <div className="relative inline-block">
-      <button onMouseEnter={() => setOpen(true)} onMouseLeave={() => setOpen(false)} onFocus={() => setOpen(true)} onBlur={() => setOpen(false)} className={cn('rounded-full px-3 py-1 text-xs font-medium', dark ? 'bg-white/10 text-slate-200' : 'bg-[#f2ece4] text-[#45655a]')}>
+      <button onMouseEnter={() => setOpen(true)} onMouseLeave={() => setOpen(false)} onFocus={() => setOpen(true)} onBlur={() => setOpen(false)} className={cn('rounded-full px-3 py-1 text-xs font-medium', dark ? 'bg-[#FFFFFF]/10 text-[#E6ECEA]' : 'bg-[#EFEAE1] text-[#1F5C4A]')}>
         {label}
       </button>
       <AnimatePresence>
         {open ? (
-          <motion.div initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: 6 }} className={cn('absolute left-1/2 top-full z-20 mt-2 w-52 -translate-x-1/2 rounded-2xl border px-3 py-2 text-xs shadow-lg', dark ? 'border-white/10 bg-[#121a27] text-slate-200' : 'border-[#e4d7c7] bg-white text-[#4c6159]')}>
+          <motion.div initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: 6 }} className={cn('absolute left-1/2 top-full z-20 mt-2 w-52 -translate-x-1/2 rounded-2xl border px-3 py-2 text-xs shadow-lg', dark ? 'border-[#FFFFFF]/30 bg-[#1F5C4A] text-[#E6ECEA]' : 'border-[#E5D8C7] bg-[#FFFFFF] text-[#255849]')}>
             {tip}
           </motion.div>
         ) : null}
@@ -99,5 +99,5 @@ export function TooltipChip({ label, tip, dark = false }) {
 }
 
 export function SkeletonBlock({ dark = false, className = '' }) {
-  return <div className={cn('animate-pulse rounded-2xl', dark ? 'bg-white/8' : 'bg-[#ece4d9]', className)} />;
+  return <div className={cn('animate-pulse rounded-2xl', dark ? 'bg-[#FFFFFF]/8' : 'bg-[#EFE7DA]', className)} />;
 }
