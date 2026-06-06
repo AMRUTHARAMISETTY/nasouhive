@@ -17,6 +17,7 @@ import {
   warehouses,
 } from '../../data/manufacturerDashboardData';
 import { ActionButton, cn, MiniStat, SectionHeader, SkeletonBlock, StatusBadge, ThemeCard, TooltipChip } from './ManufacturerUI';
+import AddStockWizard from '../AddStockWizard';
 
 ChartJS.register(ArcElement, BarElement, CategoryScale, Filler, Legend, LineElement, LinearScale, PointElement, Tooltip);
 
@@ -208,6 +209,7 @@ export function InventoryPage() {
   const [viewMode, setViewMode] = useState('grid');
   const [activeTab, setActiveTab] = useState('All');
   const [search, setSearch] = useState('');
+  const [showWizardModal, setShowWizardModal] = useState(false);
   const [addPanel, setAddPanel] = useState('');
   const [manualForm, setManualForm] = useState({ name: '', sku: '', category: 'Finished Goods', quantity: '', location: '', status: 'Healthy' });
   const [voiceText, setVoiceText] = useState('');
@@ -291,7 +293,12 @@ export function InventoryPage() {
       setVoiceText(transcript);
       setImportMessage('Voice list captured. Review it and generate inventory rows.');
     };
-    recognition.start();
+    try {
+      recognition.start();
+    } catch {
+      setIsListening(false);
+      setImportMessage('Voice capture could not start. You can type the inventory list manually.');
+    }
   };
 
   const generateFromVoice = () => {
@@ -315,6 +322,11 @@ export function InventoryPage() {
     setImportMessage(`${rows.length} inventory row${rows.length > 1 ? 's' : ''} generated from voice.`);
   };
 
+  const handleWizardMethodSelect = (methodId) => {
+    setShowWizardModal(false);
+    setAddPanel(methodId);
+  };
+
   return (
     <div className="space-y-6">
       <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
@@ -323,7 +335,7 @@ export function InventoryPage() {
           <p className="mt-1 text-sm text-[#255849]">Manage your stock seamlessly</p>
         </div>
         <div className="flex flex-wrap gap-2">
-          <button type="button" onClick={() => setAddPanel((prev) => (prev ? '' : 'manual'))} className="rounded-xl bg-[#1F5C4A] px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-[#255849]">+ Add Inventory</button>
+          <button type="button" onClick={() => setShowWizardModal(true)} className="rounded-xl bg-[#1F5C4A] px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-[#255849]">➕ Add Inventory</button>
           <div className="flex rounded-xl border border-[#E6ECEA] bg-white p-1">
             {['grid', 'list'].map((mode) => (
               <button key={mode} type="button" onClick={() => setViewMode(mode)} className={cn('rounded-lg px-3 py-1.5 text-sm font-semibold capitalize transition', viewMode === mode ? 'bg-[#1F5C4A] text-white' : 'text-[#255849] hover:bg-[#E6ECEA]')}>
@@ -448,6 +460,16 @@ export function InventoryPage() {
           </table>
         </div>
       )}
+
+      {/* Add Stock Wizard Modal */}
+      <AddStockWizard
+        open={showWizardModal}
+        onClose={() => setShowWizardModal(false)}
+        onMethodSelect={handleWizardMethodSelect}
+        type="manufacturer"
+        customTitle="Add New Inventory"
+        customSubtitle="Choose how you want to create stock entries"
+      />
     </div>
   );
 }

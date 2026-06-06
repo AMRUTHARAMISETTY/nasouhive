@@ -1,5 +1,6 @@
 import React, { useMemo, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
+import { useNavigate } from 'react-router-dom';
 import {
   bestDeals,
   customerCategories,
@@ -25,11 +26,17 @@ const openGoogleMaps = (locationValue = '') => {
 };
 
 function CustomerPortal() {
+  const navigate = useNavigate();
   const [activePage, setActivePage] = useState('home');
   const [search, setSearch] = useState('');
   const [language, setLanguage] = useState('EN');
   const [category, setCategory] = useState('All');
   const [sortBy, setSortBy] = useState('Popularity');
+  const [maxPrice, setMaxPrice] = useState(150);
+  const [minRating, setMinRating] = useState(0);
+  const [inStockOnly, setInStockOnly] = useState(true);
+  const [sameDayOnly, setSameDayOnly] = useState(false);
+  const [dealsOnly, setDealsOnly] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState(trendingProducts[0]);
   const [cartItems, setCartItems] = useState([trendingProducts[0], recommendedProducts[1]]);
   const [wishlist, setWishlist] = useState([recommendedProducts[2], trendingProducts[2]]);
@@ -38,12 +45,18 @@ function CustomerPortal() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   const filteredProducts = useMemo(() => {
-    let items = allProducts.filter((item) => item.name.toLowerCase().includes(search.toLowerCase()));
+    const query = search.toLowerCase();
+    let items = allProducts.filter((item) => [item.name, item.category, item.supplier, item.badge].filter(Boolean).join(' ').toLowerCase().includes(query));
     if (category !== 'All') items = items.filter((item) => item.category === category);
-    if (sortBy === 'Price low -> high') items = [...items].sort((a, b) => a.price - b.price);
+    items = items.filter((item) => item.price <= maxPrice);
+    if (minRating) items = items.filter((item) => item.rating >= minRating);
+    if (inStockOnly) items = items.filter((item) => item.inStock);
+    if (sameDayOnly) items = items.filter((item) => item.sameDay);
+    if (dealsOnly) items = items.filter((item) => item.originalPrice);
+    if (sortBy === 'Price low to high') items = [...items].sort((a, b) => a.price - b.price);
     if (sortBy === 'Rating') items = [...items].sort((a, b) => b.rating - a.rating);
     return items;
-  }, [search, category, sortBy]);
+  }, [category, dealsOnly, inStockOnly, maxPrice, minRating, sameDayOnly, search, sortBy]);
 
   const cartSummary = useMemo(() => {
     const subtotal = cartItems.reduce((sum, item) => sum + item.price, 0);
@@ -67,9 +80,9 @@ function CustomerPortal() {
     );
 
   return (
-    <div className={cn('min-h-screen bg-[#EFE7DA]', shellBg)}>
-      <div className="flex min-h-screen">
-        <aside className="hidden w-[260px] shrink-0 border-r border-[#E5D8C7] bg-[#EFEAE1] px-4 py-5 backdrop-blur-xl lg:block">
+    <div className={cn('h-screen overflow-hidden bg-[#EFE7DA]', shellBg)}>
+      <div className="flex h-screen">
+        <aside className="hidden h-screen w-[260px] shrink-0 overflow-y-auto border-r border-[#E5D8C7] bg-[#EFEAE1] px-4 py-5 backdrop-blur-xl lg:block">
           <div className="mb-8 flex items-center gap-3">
             <div className="grid h-11 w-11 place-items-center rounded-2xl border border-[#255849] bg-[#1F5C4A] text-white shadow-[0_14px_34px_rgba(31,92,74,0.3)]">N</div>
             <div>
@@ -92,7 +105,7 @@ function CustomerPortal() {
           </PortalCard>
         </aside>
 
-        <div className="flex min-w-0 flex-1 flex-col">
+        <div className="flex h-screen min-w-0 flex-1 flex-col overflow-hidden">
           <header className="sticky top-0 z-30 border-b border-[#E5D8C7] bg-[#FFFFFF]/85 px-4 py-4 backdrop-blur-xl sm:px-6">
             <div className="flex flex-col gap-4 xl:flex-row xl:items-center xl:justify-between">
               <div className="flex items-center gap-3">
@@ -141,7 +154,7 @@ function CustomerPortal() {
             ) : null}
           </AnimatePresence>
 
-          <main className="flex-1 px-4 py-6 sm:px-6">
+          <main className="min-h-0 flex-1 overflow-y-auto px-4 py-6 sm:px-6">
             <div className="mx-auto max-w-[1500px] space-y-6">
               {activePage === 'home' && (
                 <>
@@ -217,10 +230,26 @@ function CustomerPortal() {
                   <PortalCard>
                     <h2 className="text-xl font-semibold text-[#1F5C4A]">Filters</h2>
                     <div className="mt-5 space-y-5">
-                      <div><p className="text-sm font-semibold text-[#1F5C4A]">Price range</p><input type="range" className="mt-3 w-full accent-[#1F5C4A]" /></div>
+                      <div>
+                        <div className="flex items-center justify-between gap-3"><p className="text-sm font-semibold text-[#1F5C4A]">Max price</p><span className="text-sm font-semibold text-[#255849]">${maxPrice}</span></div>
+                        <input type="range" min="10" max="150" value={maxPrice} onChange={(e) => setMaxPrice(Number(e.target.value))} className="mt-3 w-full accent-[#1F5C4A]" />
+                      </div>
                       <div><p className="text-sm font-semibold text-[#1F5C4A]">Category</p><div className="mt-3 flex flex-wrap gap-2">{['All', ...customerCategories.map((item) => item.name)].map((item) => <button key={item} onClick={() => setCategory(item)} className={cn('rounded-full px-3 py-2 text-xs font-semibold', category === item ? 'bg-[#1F5C4A] text-white' : 'bg-[#EFEAE1] text-[#1F5C4A]')}>{item}</button>)}</div></div>
-                      <div><p className="text-sm font-semibold text-[#1F5C4A]">Rating</p><div className="mt-3 flex gap-2">{['4.5+', '4.0+', '3.5+'].map((item) => <div key={item} className="rounded-full bg-[#EFEAE1] px-3 py-2 text-xs font-semibold text-[#1F5C4A]">{item}</div>)}</div></div>
-                      <div><p className="text-sm font-semibold text-[#1F5C4A]">Availability</p><div className="mt-3 space-y-2 text-sm text-[#255849]"><label className="flex items-center gap-2"><input type="checkbox" defaultChecked /> In Stock</label><label className="flex items-center gap-2"><input type="checkbox" /> Same Day</label></div></div>
+                      <div>
+                        <p className="text-sm font-semibold text-[#1F5C4A]">Rating</p>
+                        <div className="mt-3 flex flex-wrap gap-2">
+                          {[0, 4.5, 4.0, 3.5].map((value) => <button key={value} onClick={() => setMinRating(value)} className={cn('rounded-full px-3 py-2 text-xs font-semibold', minRating === value ? 'bg-[#1F5C4A] text-white' : 'bg-[#EFEAE1] text-[#1F5C4A]')}>{value ? `${value}+` : 'All'}</button>)}
+                        </div>
+                      </div>
+                      <div>
+                        <p className="text-sm font-semibold text-[#1F5C4A]">Availability</p>
+                        <div className="mt-3 space-y-2 text-sm text-[#255849]">
+                          <label className="flex items-center gap-2"><input type="checkbox" checked={inStockOnly} onChange={(e) => setInStockOnly(e.target.checked)} /> In Stock</label>
+                          <label className="flex items-center gap-2"><input type="checkbox" checked={sameDayOnly} onChange={(e) => setSameDayOnly(e.target.checked)} /> Same Day</label>
+                          <label className="flex items-center gap-2"><input type="checkbox" checked={dealsOnly} onChange={(e) => setDealsOnly(e.target.checked)} /> Deals only</label>
+                        </div>
+                      </div>
+                      <button type="button" onClick={() => { setCategory('All'); setMaxPrice(150); setMinRating(0); setInStockOnly(false); setSameDayOnly(false); setDealsOnly(false); }} className="w-full rounded-2xl border border-[#1F5C4A] px-4 py-3 text-sm font-semibold text-[#1F5C4A]">Clear Filters</button>
                     </div>
                   </PortalCard>
                   <div className="space-y-4">
@@ -233,6 +262,7 @@ function CustomerPortal() {
                     <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
                       {filteredProducts.map((product) => <ProductTile key={`${product.id}-${product.name}`} product={product} onOpen={(item) => { setSelectedProduct(item); setActivePage('product'); }} onAdd={addToCart} />)}
                     </div>
+                    {!filteredProducts.length ? <EmptyState title="No products found" detail="Try clearing filters or lowering the rating and delivery requirements." /> : null}
                   </div>
                 </div>
               )}
@@ -241,11 +271,11 @@ function CustomerPortal() {
                 <div className="grid gap-6 xl:grid-cols-[1.05fr_0.95fr]">
                   <PortalCard>
                     <div className="grid gap-4">
-                      <div className="grid min-h-[360px] place-items-center rounded-[22px] bg-[linear-gradient(135deg,#EFEAE1,#FFFFFF)]" style={{ boxShadow: `inset 0 0 0 1px ${selectedProduct.accent}22` }}>
-                        <div className="h-36 w-36 rounded-[36px] border border-white/60 bg-white/70 shadow-[0_20px_40px_rgba(24,53,44,0.08)]" />
+                      <div className="min-h-[360px] overflow-hidden rounded-[22px] bg-[#EFEAE1]" style={{ boxShadow: `inset 0 0 0 1px ${selectedProduct.accent}22` }}>
+                        {selectedProduct.image ? <img src={selectedProduct.image} alt={selectedProduct.name} className="h-full min-h-[360px] w-full object-cover" /> : null}
                       </div>
                       <div className="grid grid-cols-4 gap-3">
-                        {[1, 2, 3, 4].map((item) => <div key={item} className="h-20 rounded-[18px] border border-white/60 bg-white/70" />)}
+                        {[1, 2, 3, 4].map((item) => <div key={item} className="h-20 overflow-hidden rounded-[18px] border border-white/60 bg-white/70">{selectedProduct.image ? <img src={selectedProduct.image} alt="" className="h-full w-full object-cover" /> : null}</div>)}
                       </div>
                     </div>
                   </PortalCard>
@@ -293,7 +323,7 @@ function CustomerPortal() {
                     <div className="mt-5 space-y-4">
                       {cartItems.map((item, index) => (
                         <div key={`${item.id}-${index}`} className="flex flex-col gap-4 rounded-[20px] border border-[#E5D8C7] bg-white/70 p-4 sm:flex-row sm:items-center">
-                          <div className="h-20 w-20 rounded-[20px] bg-[linear-gradient(135deg,#EFEAE1,#FFFFFF)]" />
+                          <div className="h-20 w-20 shrink-0 overflow-hidden rounded-[20px] bg-[#EFEAE1]">{item.image ? <img src={item.image} alt={item.name} className="h-full w-full object-cover" /> : null}</div>
                           <div className="flex-1">
                             <p className="font-semibold text-[#1F5C4A]">{item.name}</p>
                             <p className="mt-1 text-sm text-[#255849]">{item.supplier}</p>
@@ -401,6 +431,7 @@ function CustomerPortal() {
                 <div className="grid gap-4 md:grid-cols-2">
                   {profileSections.map((section) => <PortalCard key={section.title}><p className="text-sm font-semibold text-[#1F5C4A]">{section.title}</p><p className="mt-3 text-sm leading-6 text-[#255849]">{section.body}</p></PortalCard>)}
                   <PortalCard><p className="text-sm font-semibold text-[#1F5C4A]">Reward points</p><p className="mt-3 text-3xl font-semibold text-[#1F5C4A]">{rewardSummary.points}</p><p className="mt-2 text-sm text-[#255849]">{rewardSummary.tier}</p></PortalCard>
+                  <PortalCard><p className="text-sm font-semibold text-[#1F5C4A]">Session</p><p className="mt-3 text-sm leading-6 text-[#255849]">Sign out of the customer portal and return to role selection.</p><button type="button" onClick={() => navigate('/app/auth', { replace: true })} className="mt-4 rounded-full bg-[#1F5C4A] px-5 py-3 text-sm font-semibold text-white">Sign out</button></PortalCard>
                 </div>
               )}
             </div>

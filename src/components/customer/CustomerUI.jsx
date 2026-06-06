@@ -32,11 +32,9 @@ export function PortalCard({ children, className = '' }) {
 export function ProductTile({ product, onOpen, onAdd }) {
   return (
     <motion.div whileHover={{ y: -4 }} className="rounded-[22px] border border-[#E5D8C7] bg-[#FFFFFF] p-4 shadow-[0_16px_34px_rgba(37,88,73,0.08)]">
-      <div className="relative overflow-hidden rounded-[18px] bg-[linear-gradient(135deg,#EFE7DA,#FFFFFF)] p-4">
+      <div className="relative overflow-hidden rounded-[18px] bg-[#EFE7DA]">
+        {product.image ? <img src={product.image} alt={product.name} className="h-44 w-full object-cover" loading="lazy" /> : null}
         <div className="absolute right-3 top-3 rounded-full bg-[#1F5C4A] px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.18em] text-white">{product.badge || product.category}</div>
-        <div className="grid h-36 place-items-center rounded-[16px]" style={{ background: `radial-gradient(circle at top, ${product.accent}26, transparent 52%)` }}>
-          <div className="h-20 w-20 rounded-[24px] border border-[#E5D8C7] bg-[#FFFFFF]/80 shadow-[0_16px_30px_rgba(37,88,73,0.08)]" />
-        </div>
       </div>
       <div className="mt-4">
         <p className="text-sm text-[#255849]">{product.category}</p>

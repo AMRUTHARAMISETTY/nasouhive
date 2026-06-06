@@ -20,6 +20,7 @@ import {
   RetailerBillingPage,
   RetailerCustomersPage,
   RetailerDashboardHome,
+  ManufacturerInventoryPage,
   RetailerInventoryPage,
   RetailerOffersPage,
   RetailerOrdersPage,
@@ -58,10 +59,11 @@ function NasuoApp() {
           <Route path="settings" element={<ManufacturerSettingsPage />} />
         </Route>
         <Route path="/retailer/*" element={<RetailerLayout />}>
-          <Route index element={<Navigate to="/app/retailer/dashboard" replace />} />
+          <Route index element={<Navigate to="/app/retailer/inventory" replace />} />
           <Route path="dashboard" element={<RetailerDashboardHome />} />
           <Route path="products" element={<RetailerProductsPage />} />
           <Route path="inventory" element={<RetailerInventoryPage />} />
+          <Route path="manufacturer-inventory" element={<ManufacturerInventoryPage />} />
           <Route path="suppliers" element={<RetailerSuppliersPage />} />
           <Route path="price-comparison" element={<RetailerPriceComparisonPage />} />
           <Route path="orders" element={<RetailerOrdersPage />} />

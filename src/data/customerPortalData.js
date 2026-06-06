@@ -19,19 +19,19 @@ export const customerCategories = [
 ];
 
 export const recommendedProducts = [
-  { id: 1, name: 'Aero Smart Kettle', category: 'Electronics', price: 74, rating: 4.8, reviews: 248, supplier: 'Retailer One', badge: 'AI Pick', accent: '#1F5C4A' },
-  { id: 2, name: 'Organic Pantry Box', category: 'Groceries', price: 29, rating: 4.9, reviews: 521, supplier: 'Fresh Basket', badge: 'Top Rated', accent: '#255849' },
-  { id: 3, name: 'Luma Desk Lamp', category: 'Home Living', price: 49, rating: 4.7, reviews: 194, supplier: 'Urban Home', badge: 'Eco Saver', accent: '#E5D8C7' },
-  { id: 4, name: 'Pure Mist Diffuser', category: 'Wellness', price: 39, rating: 4.6, reviews: 166, supplier: 'Calm Collective', badge: 'Wellness', accent: '#EFE7DA' },
+  { id: 1, name: 'Aero Smart Kettle', category: 'Electronics', price: 74, rating: 4.8, reviews: 248, supplier: 'Retailer One', badge: 'AI Pick', accent: '#1F5C4A', inStock: true, sameDay: true, image: 'https://images.unsplash.com/photo-1571552879083-e93b6ea70d1d?auto=format&fit=crop&w=640&q=80' },
+  { id: 2, name: 'Organic Pantry Box', category: 'Groceries', price: 29, rating: 4.9, reviews: 521, supplier: 'Fresh Basket', badge: 'Top Rated', accent: '#255849', inStock: true, sameDay: true, image: 'https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=640&q=80' },
+  { id: 3, name: 'Luma Desk Lamp', category: 'Home Living', price: 49, rating: 4.7, reviews: 194, supplier: 'Urban Home', badge: 'Eco Saver', accent: '#E5D8C7', inStock: true, sameDay: false, image: 'https://images.unsplash.com/photo-1507473885765-e6ed057f782c?auto=format&fit=crop&w=640&q=80' },
+  { id: 4, name: 'Pure Mist Diffuser', category: 'Wellness', price: 39, rating: 4.6, reviews: 166, supplier: 'Calm Collective', badge: 'Wellness', accent: '#EFE7DA', inStock: true, sameDay: false, image: 'https://images.unsplash.com/photo-1608571423902-eed4a5ad8108?auto=format&fit=crop&w=640&q=80' },
 ];
 
 export const trendingProducts = [
-  { id: 5, name: 'Nova Noise Buds', category: 'Electronics', price: 119, originalPrice: 149, rating: 4.9, reviews: 892, supplier: 'Sound Loft', badge: '18% off', accent: '#1F5C4A' },
-  { id: 6, name: 'Harvest Blend Coffee', category: 'Groceries', price: 18, originalPrice: 24, rating: 4.7, reviews: 410, supplier: 'Bean Theory', badge: 'Best Deal', accent: '#255849' },
-  { id: 7, name: 'Cloud Weave Throw', category: 'Home Living', price: 56, originalPrice: 79, rating: 4.8, reviews: 204, supplier: 'House Foundry', badge: 'Limited', accent: '#E5D8C7' },
-  { id: 8, name: 'Glow Skin Serum', category: 'Beauty', price: 42, originalPrice: 52, rating: 4.6, reviews: 300, supplier: 'Aster Care', badge: 'Trending', accent: '#E6ECEA' },
-  { id: 9, name: 'MoveFit Bottle', category: 'Accessories', price: 22, originalPrice: 30, rating: 4.8, reviews: 115, supplier: 'Active Loop', badge: 'Popular', accent: '#EFEAE1' },
-  { id: 10, name: 'Sleep Calm Tea', category: 'Wellness', price: 15, originalPrice: 19, rating: 4.5, reviews: 97, supplier: 'Herbal Hour', badge: 'New', accent: '#EFE7DA' },
+  { id: 5, name: 'Nova Noise Buds', category: 'Electronics', price: 119, originalPrice: 149, rating: 4.9, reviews: 892, supplier: 'Sound Loft', badge: '18% off', accent: '#1F5C4A', inStock: true, sameDay: true, image: 'https://images.unsplash.com/photo-1606220588913-b3aacb4d2f46?auto=format&fit=crop&w=640&q=80' },
+  { id: 6, name: 'Harvest Blend Coffee', category: 'Groceries', price: 18, originalPrice: 24, rating: 4.7, reviews: 410, supplier: 'Bean Theory', badge: 'Best Deal', accent: '#255849', inStock: true, sameDay: true, image: 'https://images.unsplash.com/photo-1447933601403-0c6688de566e?auto=format&fit=crop&w=640&q=80' },
+  { id: 7, name: 'Cloud Weave Throw', category: 'Home Living', price: 56, originalPrice: 79, rating: 4.8, reviews: 204, supplier: 'House Foundry', badge: 'Limited', accent: '#E5D8C7', inStock: false, sameDay: false, image: 'https://images.unsplash.com/photo-1584100936595-c0654b55a2e2?auto=format&fit=crop&w=640&q=80' },
+  { id: 8, name: 'Glow Skin Serum', category: 'Beauty', price: 42, originalPrice: 52, rating: 4.6, reviews: 300, supplier: 'Aster Care', badge: 'Trending', accent: '#E6ECEA', inStock: true, sameDay: false, image: 'https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&w=640&q=80' },
+  { id: 9, name: 'MoveFit Bottle', category: 'Accessories', price: 22, originalPrice: 30, rating: 4.8, reviews: 115, supplier: 'Active Loop', badge: 'Popular', accent: '#EFEAE1', inStock: true, sameDay: true, image: 'https://images.unsplash.com/photo-1602143407151-7111542de6e8?auto=format&fit=crop&w=640&q=80' },
+  { id: 10, name: 'Sleep Calm Tea', category: 'Wellness', price: 15, originalPrice: 19, rating: 4.5, reviews: 97, supplier: 'Herbal Hour', badge: 'New', accent: '#EFE7DA', inStock: true, sameDay: false, image: 'https://images.unsplash.com/photo-1571934811356-5cc061b6821f?auto=format&fit=crop&w=640&q=80' },
 ];
 
 export const bestDeals = [
@@ -41,9 +41,9 @@ export const bestDeals = [
 ];
 
 export const recentlyViewed = [
-  { id: 11, name: 'Stoneware Mug Set', category: 'Home Living', price: 34, rating: 4.6, reviews: 76, supplier: 'Clayline', accent: '#E5D8C7' },
-  { id: 12, name: 'Cold Press Juice Pack', category: 'Groceries', price: 21, rating: 4.7, reviews: 118, supplier: 'Daily Press', accent: '#255849' },
-  { id: 13, name: 'Portable Air Purifier', category: 'Electronics', price: 82, rating: 4.5, reviews: 64, supplier: 'Pure Grid', accent: '#1F5C4A' },
+  { id: 11, name: 'Stoneware Mug Set', category: 'Home Living', price: 34, rating: 4.6, reviews: 76, supplier: 'Clayline', accent: '#E5D8C7', inStock: true, sameDay: false, image: 'https://images.unsplash.com/photo-1514228742587-6b1558fcca3d?auto=format&fit=crop&w=640&q=80' },
+  { id: 12, name: 'Cold Press Juice Pack', category: 'Groceries', price: 21, rating: 4.7, reviews: 118, supplier: 'Daily Press', accent: '#255849', inStock: true, sameDay: true, image: 'https://images.unsplash.com/photo-1613478223719-2ab802602423?auto=format&fit=crop&w=640&q=80' },
+  { id: 13, name: 'Portable Air Purifier', category: 'Electronics', price: 82, rating: 4.5, reviews: 64, supplier: 'Pure Grid', accent: '#1F5C4A', inStock: false, sameDay: false, image: 'https://images.unsplash.com/photo-1632923565835-6587b54f2100?auto=format&fit=crop&w=640&q=80' },
 ];
 
 export const orderHistory = [

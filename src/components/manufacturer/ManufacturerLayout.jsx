@@ -1,6 +1,6 @@
 import React, { useMemo, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
-import { NavLink, Outlet, useLocation } from 'react-router-dom';
+import { NavLink, Outlet, useLocation, useNavigate } from 'react-router-dom';
 import { manufacturerNavItems } from '../../data/manufacturerDashboardData';
 import { cn, Icon } from './ManufacturerUI';
 
@@ -24,6 +24,7 @@ function ManufacturerLayout() {
   const [search, setSearch] = useState('');
   const [showProfileMenu, setShowProfileMenu] = useState(false);
   const location = useLocation();
+  const navigate = useNavigate();
 
   const sectionKey = useMemo(() => location.pathname.split('/').filter(Boolean).pop() ?? 'dashboard', [location.pathname]);
   const pageTitle = titleMap[sectionKey] ?? 'Manufacturer Portal';
@@ -35,6 +36,13 @@ function ManufacturerLayout() {
         ? 'text-[#1F5C4A] shadow-[inset_4px_0_0_#1F5C4A]'
         : 'text-[#255849] hover:text-[#1F5C4A] hover:shadow-[inset_4px_0_0_#255849]',
     );
+
+  const handleProfileAction = (item) => {
+    setShowProfileMenu(false);
+    if (item === 'Sign out') {
+      navigate('/app/auth', { replace: true });
+    }
+  };
 
   return (
     <div className="min-h-screen bg-[#EFE7DA]">
@@ -89,7 +97,7 @@ function ManufacturerLayout() {
                     <AnimatePresence>
                       {showProfileMenu ? (
                         <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: 8 }} className="absolute right-0 top-full z-20 mt-2 w-48 rounded-[18px] border border-[#E5D8C7] bg-[#FFFFFF] p-2 shadow-xl">
-                          {['Profile', 'Workspace', 'Sign out'].map((item) => <button key={item} className="block w-full rounded-xl px-3 py-2 text-left text-sm text-[#1F5C4A] hover:bg-[#EFEAE1]">{item}</button>)}
+                          {['Profile', 'Workspace', 'Sign out'].map((item) => <button key={item} type="button" onClick={() => handleProfileAction(item)} className="block w-full rounded-xl px-3 py-2 text-left text-sm text-[#1F5C4A] hover:bg-[#EFEAE1]">{item}</button>)}
                         </motion.div>
                       ) : null}
                     </AnimatePresence>
