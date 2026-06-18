@@ -825,7 +825,7 @@ const LoginRegisterPage = () => {
 
                       <p className="text-sm text-[#255849]">
                         Already have an account?{' '}
-                        <button type="button" onClick={() => handleModeChange('login')} className="font-semibold" style={{ color: role.accentSoft }}>
+                        <button type="button" onClick={() => handleModeChange('login')} className="font-bold text-[#1F5C4A] transition hover:text-[#255849]">
                           Sign In
                         </button>
                       </p>

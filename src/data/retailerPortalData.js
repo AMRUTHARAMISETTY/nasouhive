@@ -1,7 +1,10 @@
 export const retailerNavItems = [
+  { key: 'dashboard', label: 'Dashboard', icon: 'grid' },
   { key: 'inventory', label: 'Retailer Inventory', icon: 'archive' },
   { key: 'manufacturer-inventory', label: 'Manufacturer Marketplace', icon: 'factory' },
-  { key: 'dashboard', label: 'Dashboard', icon: 'grid' },
+  { key: 'stock-requests', label: 'Stock Requests', icon: 'bag' },
+  { key: 'stock-signals', label: 'Smart Stock Signals', icon: 'chart' },
+  { key: 'warehouses', label: 'Warehouses', icon: 'archive' },
   { key: 'products', label: 'Products', icon: 'box' },
   { key: 'suppliers', label: 'Suppliers', icon: 'users' },
   { key: 'price-comparison', label: 'Price Comparison', icon: 'compare' },
@@ -15,10 +18,10 @@ export const retailerNavItems = [
 ];
 
 export const retailerStats = [
-  { label: 'Total Sales Today', value: '$82.4k', delta: '+14.2%', detail: 'Across online and in-store channels', tone: 'emerald' },
-  { label: 'Orders Received', value: '246', delta: '+19', detail: '52 awaiting fulfillment handoff', tone: 'amber' },
-  { label: 'Inventory Status', value: '91%', delta: 'Stable', detail: '7 SKUs near reorder threshold', tone: 'blue' },
-  { label: 'Profit', value: '$18.7k', delta: '+8.7%', detail: 'Healthy blended margin performance', tone: 'violet' },
+  { label: "Today's Sales", value: 'INR 8.4L', delta: '+15.2%', detail: 'Across all active stores', tone: 'emerald' },
+  { label: 'Active Orders', value: '156', delta: '+12 new', detail: 'Awaiting manufacturer fulfillment', tone: 'amber' },
+  { label: 'Inventory Health', value: '92%', delta: '3 low', detail: 'Healthy stock coverage', tone: 'blue' },
+  { label: 'Profit Margin', value: '24.8%', delta: '+4.6%', detail: 'Current month average', tone: 'violet' },
 ];
 
 export const retailerRecentActivity = [

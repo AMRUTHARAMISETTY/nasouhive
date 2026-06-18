@@ -7,6 +7,7 @@ import {
   ManufacturerDashboardHome,
   ManufacturerSettingsPage,
   ManufacturingPage,
+  MachinesPage,
   OrdersPage,
   ProductionPlanningPage,
   QualityControlPage,
@@ -29,7 +30,10 @@ import {
   RetailerProductsPage,
   RetailerReportsPage,
   RetailerSettingsPage,
+  RetailerStockRequestsPage,
+  RetailerStockSignalsPage,
   RetailerSuppliersPage,
+  RetailerWarehousesPage,
 } from './components/retailer/RetailerSectionViews';
 import CustomerPortal from './pages/CustomerPortal';
 import LoginRegisterPage from './pages/LoginRegisterPage';
@@ -52,6 +56,7 @@ function NasuoApp() {
           <Route path="manufacturing" element={<ManufacturingPage />} />
           <Route path="inventory" element={<InventoryPage />} />
           <Route path="quality" element={<QualityControlPage />} />
+          <Route path="machines" element={<MachinesPage />} />
           <Route path="supply-chain" element={<SupplyChainPage />} />
           <Route path="orders" element={<OrdersPage />} />
           <Route path="warehouses" element={<WarehousesPage />} />
@@ -64,6 +69,9 @@ function NasuoApp() {
           <Route path="products" element={<RetailerProductsPage />} />
           <Route path="inventory" element={<RetailerInventoryPage />} />
           <Route path="manufacturer-inventory" element={<ManufacturerInventoryPage />} />
+          <Route path="stock-requests" element={<RetailerStockRequestsPage />} />
+          <Route path="stock-signals" element={<RetailerStockSignalsPage />} />
+          <Route path="warehouses" element={<RetailerWarehousesPage />} />
           <Route path="suppliers" element={<RetailerSuppliersPage />} />
           <Route path="price-comparison" element={<RetailerPriceComparisonPage />} />
           <Route path="orders" element={<RetailerOrdersPage />} />
